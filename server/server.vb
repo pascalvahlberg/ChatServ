@@ -19,6 +19,7 @@ Module server
     Private config_port As String = conf.load("network", "port")
     Private ipendpoint As IPEndPoint = New IPEndPoint(config_ip, config_port)
     Private list As New List(Of Connection)
+    Private users As New List(Of String)
 
     Private Structure Connection
         Dim stream As NetworkStream
@@ -40,15 +41,14 @@ Module server
         Next
     End Sub
 
-    Private Sub OnlineList(ByVal u As String)
-        For Each c As Connection In list
-            Try
-                c.streamw.WriteLine()
-                c.streamw.Flush()
-            Catch
-            End Try
+    Private Function OnlineList()
+        users.Sort()
+        Dim nicks As String = "/names"
+        For Each c As String In users
+            nicks &= " " & c
         Next
-    End Sub
+        Return nicks
+    End Function
 
     Sub Main()
         If IO.File.Exists("config.ini") = False Then
@@ -85,16 +85,24 @@ Module server
             c.streamw = New StreamWriter(c.stream)
 
             c.nick = c.streamr.ReadLine
-            c.rev = c.streamr.ReadLine
-            list.Add(c)
-            Console.ForegroundColor = ConsoleColor.Red
-            SendToAllClients("Has joined: " & c.nick & ". Client Revision: " & c.rev)
-            Console.WriteLine("#" & time & " " & c.nick & " has joined with Client Revision: " + c.rev)
-            scriptslog.LogMessage("#" & time & " " & c.nick & " has joined with Client Revision: " + c.rev)
-            Console.ForegroundColor = ConsoleColor.Cyan
+            If c.nick.StartsWith("@") Or users.Contains(c.nick) Then
+                c.stream.Close()
+                c.streamr.Close()
+                c.streamw.Close()
+            Else
+                c.rev = c.streamr.ReadLine
+                list.Add(c)
+                users.Add(c.nick)
+                SendToAllClients(OnlineList())
+                Console.ForegroundColor = ConsoleColor.Red
+                SendToAllClients("Has joined: " & c.nick & ". Client Revision: " & c.rev)
+                Console.WriteLine("#" & time & " " & c.nick & " has joined with Client Revision: " + c.rev)
+                scriptslog.LogMessage("#" & time & " " & c.nick & " has joined with Client Revision: " + c.rev)
+                Console.ForegroundColor = ConsoleColor.Cyan
 
-            Dim t As New Threading.Thread(AddressOf ListenToConnection)
-            t.Start(c)
+                Dim t As New Threading.Thread(AddressOf ListenToConnection)
+                t.Start(c)
+            End If
         End While
     End Sub
 
@@ -103,22 +111,29 @@ Module server
             Try
                 Dim announce As String = con.announce
                 Dim tmp As String = con.streamr.ReadLine
-                If tmp.StartsWith(config_cmd & "kick") And config_admpwd = con.pwd Then
+                If tmp.StartsWith(config_cmd & "kill") And config_admpwd = con.pwd Then
                     Console.ForegroundColor = ConsoleColor.Yellow
                     Dim Kickname As String = tmp.Remove(0, 6)
                     For Each Connection In list
                         If Connection.nick = Kickname Then
-                            SendToAllClients("--> " & Kickname & " is kicked.")
-                            Sendtoperson("/kicked", Kickname)
-                            Console.WriteLine("*" & time & " " & Kickname & " is kicked!")
-                            scriptslog.LogMessage("*" & time & " " & Kickname & " is kicked!")
                             list.Remove(Connection)
+                            users.Remove(Connection.nick)
+                            Connection.stream.Close()
+                            Connection.streamr.Close()
+                            Connection.streamw.Close()
+                            Console.WriteLine(time & " " & OnlineList())
+                            scriptslog.LogMessage("*** " & time & " " & OnlineList())
+                            SendToAllClients(OnlineList())
+                            SendToAllClients("--> " & Kickname & " is killed.")
+                            Console.WriteLine("*" & time & " " & Kickname & " is killed!")
+                            scriptslog.LogMessage("*" & time & " " & Kickname & " is killed!")
                             Exit For
                         End If
                     Next
                 ElseIf tmp.StartsWith(config_cmd & "shutdown") And config_admpwd = con.pwd Then
                     Console.ForegroundColor = ConsoleColor.Yellow
                     scriptslog.LogMessage("***Server shutdown by " + con.nick + "****")
+                    SendToAllClients("/SHUTDOWN")
                     End
                 ElseIf tmp.StartsWith(config_cmd + "announce") And config_admpwd = con.pwd Then
                     Console.ForegroundColor = ConsoleColor.Cyan
@@ -137,35 +152,49 @@ Module server
                     SendToAllClients(con.nick & " is not longer AFK")
                 ElseIf tmp.StartsWith("#admin") And Not tmp.Contains(" ") Then
                     con.pwd = con.streamr.ReadLine
-                    If con.pwd = config_admpwd Then
+                    If con.pwd = config_admpwd And Not con.nick.StartsWith("@") Then
                         Console.ForegroundColor = ConsoleColor.Yellow
                         Console.WriteLine(time & " " & con.nick & " has been identified as Admin")
                         scriptslog.LogMessage("*** " + time + " " + con.nick + " has been identified as Admin")
                         SendToAllClients(con.nick + " has been identified as Admin")
+                        users.Remove(con.nick)
+                        con.nick = "@" & con.nick
+                        users.Add(con.nick)
+                        Console.WriteLine(time & " " & OnlineList())
+                        scriptslog.LogMessage("*** " & time & " " & OnlineList())
+                        SendToAllClients(OnlineList())
                     Else
 
                     End If
                 ElseIf tmp.Contains(config_admpwd) Then
+                    list.Remove(con)
+                    users.Remove(con.nick)
+                    con.stream.Close()
+                    con.streamr.Close()
+                    con.streamw.Close()
+                    Console.WriteLine(time & " " & OnlineList())
+                    scriptslog.LogMessage("*** " & time & " " & OnlineList())
+                    SendToAllClients(OnlineList())
                     Console.ForegroundColor = ConsoleColor.Yellow
-                    SendToAllClients("--> " & con.nick & " is kicked by Server.")
-                    Sendtoperson("/kicked", con.nick)
-                    Console.WriteLine("*" & time & " " & con.nick & " was kicked by Server!")
-                    scriptslog.LogMessage("*" & time & " " & con.nick & " was kicked by Server!")
-                ElseIf tmp.StartsWith(config_cmd + "w") Then
-                    'Feature under Development
-                ElseIf tmp.Contains("hure") Then
-                    'Feature under Development
-                ElseIf tmp.StartsWith(config_cmd + "online") Then
-                    OnlineList("OnlineListe")
-                    Console.WriteLine("Requested Onlinelist")
+                    SendToAllClients("--> " & con.nick & " is killed by Server.")
+                    Console.WriteLine("*" & time & " " & con.nick & " was killed by Server!")
+                    scriptslog.LogMessage("*" & time & " " & con.nick & " was killed by Server!")
+                ElseIf tmp.StartsWith(config_cmd + "names") Then
+                    Sendtoperson(OnlineList(), con.nick)
+                    Console.WriteLine(time & " " & OnlineList())
+                    scriptslog.LogMessage("*** " & time & " " & OnlineList())
                 Else
                     Console.ForegroundColor = ConsoleColor.Cyan
-                    Console.WriteLine(time & " " & con.nick & ": " & tmp)
-                    scriptslog.LogMessage(time & " " & con.nick & ": " & tmp)
-                    SendToAllClients(con.nick & ": " & tmp)
+                    Console.WriteLine(time & " <" & con.nick & "> " & tmp)
+                    scriptslog.LogMessage(time & " <" & con.nick & "> " & tmp)
+                    SendToAllClients("<" & con.nick & "> " & tmp)
                 End If
             Catch
                 list.Remove(con)
+                users.Remove(con.nick)
+                Console.WriteLine(time & " " & OnlineList())
+                scriptslog.LogMessage("*** " & time & " " & OnlineList())
+                SendToAllClients(OnlineList())
                 Console.ForegroundColor = ConsoleColor.Red
                 SendToAllClients("Has exited: " & con.nick)
                 Console.WriteLine("#" & time & " " & con.nick & " has exited.")

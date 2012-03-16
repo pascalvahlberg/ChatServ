@@ -49,18 +49,34 @@ Public Class chat
     End Sub
 
     Private Sub AddItem(ByVal s As String)
-        If s.StartsWith("/kicked") Then
+        If s.StartsWith("/SHUTDOWN") Then
+            RichTextBox1.AppendText(vbNewLine & "*** SERVER SHUTDOWN ***")
             client.Close()
             stream.Close()
             streamw.Close()
             streamr.Close()
-            MessageBox.Show("you were kicked")
+            MessageBox.Show("Server shutdown")
             Application.Exit()
+        ElseIf s.StartsWith("/names") Then
+            Dim i As Integer
+            Dim names() As String = s.Split(" ")
+            ListBox1.Items.Clear()
+            For i = 1 To names.Length - 1
+                With ListBox1
+                    .Items.Add(names(i))
+                End With
+            Next
+        Else
+            If String.IsNullOrWhiteSpace(RichTextBox1.Text) Then
+                RichTextBox1.AppendText(s)
+            Else
+                RichTextBox1.AppendText(vbNewLine & s)
+            End If
+            If RichTextBox1.Text.Length = RichTextBox1.MaxLength Then
+                RichTextBox1.Text = s
+            End If
+            TextBox1.SendToBack()
         End If
-        ListBox1.Items.Add(s)
-        With ListBox1
-            .TopIndex += 1
-        End With
     End Sub
 
     Private Sub Listen()
@@ -79,8 +95,8 @@ Public Class chat
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        If TextBox1.Text = "" Or TextBox1.Text = " " Then
-
+        If String.IsNullOrWhiteSpace(TextBox1.Text) Then
+            RichTextBox1.AppendText(vbNewLine & "FILL IN A TEXT")
         ElseIf TextBox1.Text = "#admin" Then
             pwd = InputBox("Password: ", "Administrationpassword")
             streamw.WriteLine(TextBox1.Text)
@@ -97,17 +113,18 @@ Public Class chat
     End Sub
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        ip = InputBox("IP: ", "IP of the Server", "")
+        ip = InputBox("Hostname of the Server:" & vbNewLine & "(default = chatserv.chiruclan.de) ", "Hostname:", "")
         If ip = "" Then
-            ip = "localhost"
+            ip = "chatserv.chiruclan.de"
         End If
-        port = InputBox("Port: (default = 8000)", "Port of Server", "")
+        port = InputBox("Port:" & vbNewLine & "(default = 8000)", "Port of Server", "")
         If port = "" Then
             port = "8000"
         End If
-        nick = InputBox("Nickname: ", "Choose nickname", "")
+        nick = InputBox("Nickname:" & vbNewLine & "(default = Guest_x)", "Choose nickname", "")
         If nick = "" Then
-            nick = "Guest"
+            Dim rand As New System.Random()
+            nick = "Guest_" & rand.Next()
         End If
     End Sub
 

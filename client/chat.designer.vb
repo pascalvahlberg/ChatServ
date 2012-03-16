@@ -22,79 +22,58 @@ Partial Class chat
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(chat))
-        Me.ListBox1 = New System.Windows.Forms.ListBox
-        Me.TextBox1 = New System.Windows.Forms.TextBox
-        Me.Button1 = New System.Windows.Forms.Button
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ShowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripDropDownButton
-        Me.BackgroundcolorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.BlackToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.BlueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.RedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.WhiteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.GrayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.CyanToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.GreenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ForegroundcolorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.BlackToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.BlueToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.WhiteToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.GrayToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.CyanToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.CyanToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem
-        Me.GreenToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.TransparencyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton
-        Me.HideToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox
+        Me.ShowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.BackgroundcolorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BlackToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BlueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WhiteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GrayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CyanToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GreenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ForegroundcolorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BlackToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BlueToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WhiteToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GrayToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CyanToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CyanToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GreenToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TransparencyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.HideToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.ContextMenuStrip1.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'ListBox1
-        '
-        Me.ListBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ListBox1.BackColor = System.Drawing.SystemColors.MenuText
-        Me.ListBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.ListBox1.ForeColor = System.Drawing.SystemColors.Window
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.HorizontalScrollbar = True
-        Me.ListBox1.Location = New System.Drawing.Point(12, 81)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.SelectionMode = System.Windows.Forms.SelectionMode.None
-        Me.ListBox1.Size = New System.Drawing.Size(551, 299)
-        Me.ListBox1.TabIndex = 0
         '
         'TextBox1
         '
         Me.TextBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox1.BackColor = System.Drawing.SystemColors.MenuText
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox1.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox1.Location = New System.Drawing.Point(12, 398)
-        Me.TextBox1.MaxLength = 100
+        Me.TextBox1.Location = New System.Drawing.Point(12, 396)
+        Me.TextBox1.MaxLength = 512
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(480, 13)
+        Me.TextBox1.Size = New System.Drawing.Size(653, 20)
         Me.TextBox1.TabIndex = 1
-        Me.TextBox1.Text = "Type your Message here"
         '
         'Button1
         '
         Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.Location = New System.Drawing.Point(498, 393)
+        Me.Button1.Location = New System.Drawing.Point(671, 394)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(65, 23)
         Me.Button1.TabIndex = 2
@@ -283,43 +262,52 @@ Partial Class chat
         Me.HideToolStripMenuItem1.Size = New System.Drawing.Size(106, 22)
         Me.HideToolStripMenuItem1.Text = "Hide"
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox1.Image = Global.Client.My.Resources.Resources.banner
-        Me.PictureBox1.ImageLocation = ""
-        Me.PictureBox1.Location = New System.Drawing.Point(3, 1)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(571, 73)
-        Me.PictureBox1.TabIndex = 4
-        Me.PictureBox1.TabStop = False
-        '
         'Timer2
         '
         Me.Timer2.Enabled = True
         '
-        'Form1
+        'ListBox1
+        '
+        Me.ListBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.Location = New System.Drawing.Point(573, 14)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(163, 368)
+        Me.ListBox1.TabIndex = 5
+        '
+        'RichTextBox1
+        '
+        Me.RichTextBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RichTextBox1.BackColor = System.Drawing.SystemColors.Window
+        Me.RichTextBox1.Cursor = System.Windows.Forms.Cursors.Default
+        Me.RichTextBox1.Location = New System.Drawing.Point(12, 14)
+        Me.RichTextBox1.Name = "RichTextBox1"
+        Me.RichTextBox1.ReadOnly = True
+        Me.RichTextBox1.Size = New System.Drawing.Size(555, 368)
+        Me.RichTextBox1.TabIndex = 6
+        Me.RichTextBox1.Text = ""
+        '
+        'chat
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.ClientSize = New System.Drawing.Size(575, 428)
+        Me.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.ClientSize = New System.Drawing.Size(748, 428)
+        Me.Controls.Add(Me.RichTextBox1)
+        Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.ListBox1)
-        Me.Controls.Add(Me.PictureBox1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "Form1"
+        Me.Name = "chat"
         Me.Text = "ChatServ-Client"
         Me.ContextMenuStrip1.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents NotifyIcon1 As System.Windows.Forms.NotifyIcon
@@ -350,7 +338,8 @@ Partial Class chat
     Friend WithEvents ToolStripMenuItem4 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem5 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem6 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents Timer2 As System.Windows.Forms.Timer
+    Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
+    Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
 
 End Class
