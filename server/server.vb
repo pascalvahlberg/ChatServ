@@ -1,4 +1,4 @@
-﻿'Copyright by Mechi Community 2009-2011
+﻿'Copyright by Chiruclan
 'Do not remove this Copyright!
 
 Imports System.Net.Sockets
@@ -59,8 +59,8 @@ Module server
         Console.Title = "ChatServ Server"
         Console.WriteLine("# <CTRL-C>")
         scriptslog.LogMessage("# <CTRL-C>")
-        Console.WriteLine("# © Mechi Community")
-        scriptslog.LogMessage("# © Mechi Community")
+        Console.WriteLine("# Powered by Chiruclan")
+        scriptslog.LogMessage("# Powered by Chiruclan")
         Console.WriteLine("# Commandstring is " + config_cmd)
         scriptslog.LogMessage("# Commandstring is " + config_cmd)
         Console.WriteLine("# Loaded at " & time)
@@ -81,7 +81,7 @@ Module server
             c.streamw = New StreamWriter(c.stream)
 
             c.nick = c.streamr.ReadLine
-            If c.nick.StartsWith("@") Or users.Contains(c.nick) Then
+            If c.nick.StartsWith("@") Or c.nick.StartsWith("<") Or c.nick.EndsWith(">") Or users.Contains(c.nick) Then
                 c.stream.Close()
                 c.streamr.Close()
                 c.streamw.Close()
@@ -128,13 +128,14 @@ Module server
                 ElseIf tmp.StartsWith(config_cmd & "shutdown") And config_admpwd = con.pwd Then
                     Console.ForegroundColor = ConsoleColor.Yellow
                     scriptslog.LogMessage("***Server shutdown by " + con.nick + "****")
+                    SendToAllClients("*** SERVER SHUTDOWN BY " & con.nick.ToUpper.Remove(0, 1) & " ***")
                     SendToAllClients("/SHUTDOWN")
                     End
                 ElseIf tmp.StartsWith(config_cmd + "announce") And config_admpwd = con.pwd Then
                     Console.ForegroundColor = ConsoleColor.Cyan
                     Console.WriteLine("!" + time & " " & tmp.Replace(config_cmd + "announce", "Announce by " + con.nick + ":"))
                     scriptslog.LogMessage("!" + time & " " & tmp.Replace(config_cmd + "announce", "Announce by " + con.nick + ":"))
-                    SendToAllClients(tmp.Replace(config_cmd + "announce", "Announce by " + con.nick + ":"))
+                    SendToAllClients("<Announce by " + con.nick + "> " & tmp.Remove(0, 9))
                 ElseIf tmp.StartsWith("!afk") Then
                     Console.ForegroundColor = ConsoleColor.Yellow
                     Console.WriteLine("#" & time & " " & con.nick & " is AFK right now")
@@ -149,9 +150,9 @@ Module server
                     con.pwd = con.streamr.ReadLine
                     If con.pwd = config_admpwd And Not con.nick.StartsWith("@") Then
                         Console.ForegroundColor = ConsoleColor.Yellow
-                        Console.WriteLine(time & " " & con.nick & " has been identified as Admin")
-                        scriptslog.LogMessage("*** " + time + " " + con.nick + " has been identified as Admin")
-                        SendToAllClients(con.nick + " has been identified as Admin")
+                        Console.WriteLine("#" & time & " *** " & con.nick & " is now an administrator")
+                        scriptslog.LogMessage("*** " + time + " *** " & con.nick & " is now an administrator")
+                        SendToAllClients("*** " & con.nick & " is now an administrator")
                         users.Remove(con.nick)
                         con.nick = "@" & con.nick
                         users.Add(con.nick)
@@ -192,8 +193,8 @@ Module server
                 SendToAllClients(OnlineList())
                 Console.ForegroundColor = ConsoleColor.Red
                 SendToAllClients("*** " & con.nick & "has quit")
-                Console.WriteLine("#" & time & " ***" & con.nick & " has quit")
-                scriptslog.LogMessage("#" & time & " ***" & con.nick & " has quit")
+                Console.WriteLine("#" & time & " *** " & con.nick & " has quit")
+                scriptslog.LogMessage("#" & time & " *** " & con.nick & " has quit")
                 Exit Do
             End Try
         Loop

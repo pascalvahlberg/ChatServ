@@ -15,6 +15,7 @@ Public Class chat
     Private ip As String = "unknown"
     Private port As String = "unknown"
     Private pwd As String = ""
+    Private connected As Boolean = False
 
     Private Sub Form1_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         Try
@@ -27,13 +28,14 @@ Public Class chat
                 streamw.WriteLine(nick)
                 streamw.Flush()
 
+                connected = True
                 t.Start()
             Else
                 client.Close()
                 stream.Close()
                 streamw.Close()
                 streamr.Close()
-                MessageBox.Show("connection failed")
+                MessageBox.Show("Unable to connect to " & ip & ":" & port)
                 Application.Exit()
             End If
         Catch ex As Exception
@@ -41,20 +43,22 @@ Public Class chat
             stream.Close()
             streamw.Close()
             streamr.Close()
-            MessageBox.Show("connection failed")
+            MessageBox.Show("Unable to connect to " & ip & ":" & port)
             Application.Exit()
         End Try
     End Sub
 
     Private Sub AddItem(ByVal s As String)
         If s.StartsWith("/SHUTDOWN") Then
-            RichTextBox1.AppendText(vbNewLine & "*** SERVER SHUTDOWN ***")
-            client.Close()
-            stream.Close()
-            streamw.Close()
-            streamr.Close()
-            MessageBox.Show("Server shutdown")
-            Application.Exit()
+            If connected Then
+                connected = False
+                client.Close()
+                stream.Close()
+                streamw.Close()
+                streamr.Close()
+                MessageBox.Show("*** SERVER SHUTDOWN ***")
+                Application.Exit()
+            End If
         ElseIf s.StartsWith("/names") Then
             Dim i As Integer
             Dim names() As String = s.Split(" ")
@@ -82,12 +86,15 @@ Public Class chat
             Try
                 Me.Invoke(New DAddItem(AddressOf AddItem), streamr.ReadLine)
             Catch ex As Exception
-                client.Close()
-                stream.Close()
-                streamw.Close()
-                streamr.Close()
-                MsgBox("connection lost/closed")
-                Application.Exit()
+                If connected Then
+                    connected = False
+                    client.Close()
+                    stream.Close()
+                    streamw.Close()
+                    streamr.Close()
+                    MsgBox("Connection lost")
+                    Application.Exit()
+                End If
             End Try
         End While
     End Sub
@@ -105,8 +112,9 @@ Public Class chat
             streamw.WriteLine(pwd)
             streamw.Flush()
             TextBox1.Clear()
-        ElseIf TextBox1.Text = "#info" Then
+        ElseIf TextBox1.Text = "#about" Then
             AboutBox1.Show()
+            TextBox1.Clear()
         Else
             streamw.WriteLine(TextBox1.Text)
             streamw.Flush()
@@ -137,11 +145,14 @@ Public Class chat
     End Sub
 
     Private Sub Form1_leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.FormClosed
-        client.Close()
-        stream.Close()
-        streamw.Close()
-        streamr.Close()
-        Application.Exit()
+        If connected Then
+            connected = False
+            client.Close()
+            stream.Close()
+            streamw.Close()
+            streamr.Close()
+            Application.Exit()
+        End If
     End Sub
 
     Private Sub ShowToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ShowToolStripMenuItem.Click

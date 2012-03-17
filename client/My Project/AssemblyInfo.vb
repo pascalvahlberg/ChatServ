@@ -8,10 +8,10 @@ Imports System.Runtime.InteropServices
 
 ' Die Werte der Assemblyattribute überprüfen
 
-<Assembly: AssemblyTitle("Client")> 
+<Assembly: AssemblyTitle("ChatServ-Client")> 
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("Chiruclan")> 
-<Assembly: AssemblyProduct("Client")> 
+<Assembly: AssemblyProduct("ChatServ-Client")> 
 <Assembly: AssemblyCopyright("Copyright © Chiruclan 2012")> 
 <Assembly: AssemblyTrademark("")> 
 
