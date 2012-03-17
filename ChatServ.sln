@@ -1,15 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+# Visual Basic Express 2010
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "server", "server\server.vbproj", "{B9F5F96D-264A-4ACC-ADC0-2D56374026EC}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DD89C78-FBCA-47C0-9AE0-5FBA8DDA1357} = {2DD89C78-FBCA-47C0-9AE0-5FBA8DDA1357}
 	EndProjectSection
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "client", "client\client.vbproj", "{AFADCE65-5A7F-401A-8441-332F2F23FBED}"
-	ProjectSection(ProjectDependencies) = postProject
-		{2DD89C78-FBCA-47C0-9AE0-5FBA8DDA1357} = {2DD89C78-FBCA-47C0-9AE0-5FBA8DDA1357}
-	EndProjectSection
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "scripts", "scripts\scripts.vbproj", "{2DD89C78-FBCA-47C0-9AE0-5FBA8DDA1357}"
 EndProject

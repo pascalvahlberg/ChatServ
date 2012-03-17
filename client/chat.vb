@@ -11,14 +11,19 @@ Public Class chat
     Private client As New TcpClient
     Private t As New Threading.Thread(AddressOf Listen)
     Private Delegate Sub DAddItem(ByVal s As String)
-    Private nick As String = "unknown"
-    Private ip As String = "unknown"
-    Private port As String = "unknown"
+    Private nick As String = ""
+    Private ip As String = ""
+    Private port As String = ""
     Private pwd As String = ""
 
     Private Sub Form1_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         Try
-            client.Connect(ip, port)
+            ip = My.Forms.Server_Manager.TextBox1.Text.ToString
+            port = My.Forms.Server_Manager.TextBox2.Text.ToString
+            nick = My.Forms.Server_Manager.TextBox3.Text.ToString
+            Server_Manager.Close()
+            TextBox1.Focus()
+            client.Connect(ip, Integer.Parse(port))
             If client.Connected Then
                 stream = client.GetStream
                 streamw = New StreamWriter(stream)
@@ -119,19 +124,19 @@ Public Class chat
     End Sub
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        ip = InputBox("Hostname of the Server:" & vbNewLine & "(default = chatserv.chiruclan.de) ", "Hostname:", "")
-        If ip = "" Then
-            ip = "chatserv.chiruclan.de"
-        End If
-        port = InputBox("Port:" & vbNewLine & "(default = 8000)", "Port of Server", "")
-        If port = "" Then
-            port = "8000"
-        End If
-        nick = InputBox("Nickname:" & vbNewLine & "(default = Guest_x)", "Choose nickname", "")
-        If nick = "" Then
-            Dim rand As New System.Random()
-            nick = "Guest_" & rand.Next()
-        End If
+        'ip = InputBox("Hostname of the Server:" & vbNewLine & "(default = chatserv.chiruclan.de) ", "Hostname:", "")
+        'If ip = "" Then
+        '   ip = "chatserv.chiruclan.de"
+        'End If
+        'port = InputBox("Port:" & vbNewLine & "(default = 8000)", "Port of Server", "")
+        'If port = "" Then
+        '    port = "8000"
+        'End If
+        'nick = InputBox("Nickname:" & vbNewLine & "(default = Guest_x)", "Choose nickname", "")
+        'If nick = "" Then
+        '    Dim rand As New System.Random()
+        '    nick = "Guest_" & rand.Next()
+        'End If
     End Sub
 
     Private Sub TextBox1_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TextBox1.KeyDown
