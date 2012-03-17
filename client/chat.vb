@@ -146,12 +146,14 @@ Public Class chat
 
     Private Sub Form1_leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.FormClosed
         If connected Then
-            connected = False
-            client.Close()
-            stream.Close()
-            streamw.Close()
-            streamr.Close()
-            Application.Exit()
+            If MsgBox("Do you really want to exit?", vbYesNo) = vbYes Then
+                connected = False
+                client.Close()
+                stream.Close()
+                streamw.Close()
+                streamr.Close()
+                Application.Exit()
+            End If
         End If
     End Sub
 
@@ -187,5 +189,18 @@ Public Class chat
         NotifyIcon1.Visible = True
         NotifyIcon1.ShowBalloonTip("10")
         Timer2.Enabled = False
+    End Sub
+
+    Private Sub ToolStripButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton1.Click
+        If connected Then
+            If MsgBox("Do you really want to exit?", vbYesNo) = vbYes Then
+                connected = False
+                client.Close()
+                stream.Close()
+                streamw.Close()
+                streamr.Close()
+                Application.Exit()
+            End If
+        End If
     End Sub
 End Class

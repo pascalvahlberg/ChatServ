@@ -36,6 +36,7 @@ Partial Class chat
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.HideToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -110,7 +111,7 @@ Partial Class chat
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton2, Me.ToolStripDropDownButton1})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton2, Me.ToolStripButton1, Me.ToolStripDropDownButton1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(748, 25)
@@ -142,6 +143,16 @@ Partial Class chat
         Me.HideToolStripMenuItem1.Name = "HideToolStripMenuItem1"
         Me.HideToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
         Me.HideToolStripMenuItem1.Text = "Hide"
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(29, 22)
+        Me.ToolStripButton1.Text = "Exit"
         '
         'chat
         '
@@ -176,5 +187,6 @@ Partial Class chat
     Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Friend WithEvents ToolStripButton2 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
 
 End Class
