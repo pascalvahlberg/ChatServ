@@ -16,7 +16,7 @@ Module server
     Private config_cmd As String = conf.load("admin", "cmd")
     Private config_ip As String = conf.load("network", "ip") 'currently buggy when other ip than 0.0.0.0
     Private config_port As String = conf.load("network", "port")
-    Private ipendpoint As IPEndPoint = New IPEndPoint(config_ip, config_port)
+    Private ipendpoint As IPEndPoint = New IPEndPoint(IPAddress.Parse(config_ip), config_port)
     Private list As New List(Of Connection)
     Private users As New List(Of String)
 

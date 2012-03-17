@@ -1,2 +1,5 @@
+0.026
+ - Fixed Server Bind Bug
+
 0.025
  - Removed unused boolean "connected"
