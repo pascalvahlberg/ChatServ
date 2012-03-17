@@ -15,7 +15,6 @@ Public Class chat
     Private ip As String = "unknown"
     Private port As String = "unknown"
     Private pwd As String = ""
-    Private connected As Boolean = False
 
     Private Sub Form1_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         Try
@@ -28,7 +27,6 @@ Public Class chat
                 streamw.WriteLine(nick)
                 streamw.Flush()
 
-                connected = True
                 t.Start()
             Else
                 client.Close()
@@ -50,8 +48,7 @@ Public Class chat
 
     Private Sub AddItem(ByVal s As String)
         If s.StartsWith("/SHUTDOWN") Then
-            If connected Then
-                connected = False
+            If client.Connected Then
                 client.Close()
                 stream.Close()
                 streamw.Close()
@@ -86,8 +83,7 @@ Public Class chat
             Try
                 Me.Invoke(New DAddItem(AddressOf AddItem), streamr.ReadLine)
             Catch ex As Exception
-                If connected Then
-                    connected = False
+                If client.Connected Then
                     client.Close()
                     stream.Close()
                     streamw.Close()
@@ -145,9 +141,9 @@ Public Class chat
     End Sub
 
     Private Sub Form1_leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.FormClosed
-        If connected Then
+        If client.Connected Then
             If MsgBox("Do you really want to exit?", vbYesNo) = vbYes Then
-                connected = False
+
                 client.Close()
                 stream.Close()
                 streamw.Close()
@@ -192,9 +188,9 @@ Public Class chat
     End Sub
 
     Private Sub ToolStripButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton1.Click
-        If connected Then
+        If client.Connected Then
             If MsgBox("Do you really want to exit?", vbYesNo) = vbYes Then
-                connected = False
+
                 client.Close()
                 stream.Close()
                 streamw.Close()
