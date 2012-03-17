@@ -16,6 +16,8 @@
         Me.LabelVersion.Text = String.Format("Version {0}", My.Application.Info.Version.ToString)
         Me.LabelCopyright.Text = My.Application.Info.Copyright
         Me.LabelCompanyName.Text = My.Application.Info.CompanyName
+        Me.Label1.Text = "Computer: " & My.Computer.Name
+        Me.Label2.Text = "User: " & My.User.Name
     End Sub
 
     Private Sub OKButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OKButton.Click

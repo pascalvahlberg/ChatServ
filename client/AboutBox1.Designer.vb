@@ -38,6 +38,8 @@ Partial Class AboutBox1
         Me.OKButton = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -45,15 +47,17 @@ Partial Class AboutBox1
         'TableLayoutPanel
         '
         Me.TableLayoutPanel.ColumnCount = 2
-        Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.0!))
-        Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.0!))
+        Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.97342!))
+        Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.02658!))
         Me.TableLayoutPanel.Controls.Add(Me.LabelProductName, 1, 0)
         Me.TableLayoutPanel.Controls.Add(Me.LabelVersion, 1, 1)
         Me.TableLayoutPanel.Controls.Add(Me.LabelCopyright, 1, 2)
         Me.TableLayoutPanel.Controls.Add(Me.LabelCompanyName, 1, 3)
         Me.TableLayoutPanel.Controls.Add(Me.OKButton, 1, 5)
-        Me.TableLayoutPanel.Controls.Add(Me.PictureBox1, 1, 4)
         Me.TableLayoutPanel.Controls.Add(Me.RichTextBox1, 0, 4)
+        Me.TableLayoutPanel.Controls.Add(Me.PictureBox1, 1, 4)
+        Me.TableLayoutPanel.Controls.Add(Me.Label1, 0, 0)
+        Me.TableLayoutPanel.Controls.Add(Me.Label2, 0, 1)
         Me.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel.Location = New System.Drawing.Point(9, 9)
         Me.TableLayoutPanel.Name = "TableLayoutPanel"
@@ -65,17 +69,17 @@ Partial Class AboutBox1
         Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
         Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel.Size = New System.Drawing.Size(396, 247)
+        Me.TableLayoutPanel.Size = New System.Drawing.Size(602, 247)
         Me.TableLayoutPanel.TabIndex = 0
         '
         'LabelProductName
         '
         Me.LabelProductName.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelProductName.Location = New System.Drawing.Point(136, 0)
+        Me.LabelProductName.Location = New System.Drawing.Point(355, 0)
         Me.LabelProductName.Margin = New System.Windows.Forms.Padding(6, 0, 3, 0)
         Me.LabelProductName.MaximumSize = New System.Drawing.Size(0, 17)
         Me.LabelProductName.Name = "LabelProductName"
-        Me.LabelProductName.Size = New System.Drawing.Size(257, 17)
+        Me.LabelProductName.Size = New System.Drawing.Size(244, 17)
         Me.LabelProductName.TabIndex = 0
         Me.LabelProductName.Text = "Produktname"
         Me.LabelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -83,11 +87,11 @@ Partial Class AboutBox1
         'LabelVersion
         '
         Me.LabelVersion.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelVersion.Location = New System.Drawing.Point(136, 24)
+        Me.LabelVersion.Location = New System.Drawing.Point(355, 24)
         Me.LabelVersion.Margin = New System.Windows.Forms.Padding(6, 0, 3, 0)
         Me.LabelVersion.MaximumSize = New System.Drawing.Size(0, 17)
         Me.LabelVersion.Name = "LabelVersion"
-        Me.LabelVersion.Size = New System.Drawing.Size(257, 17)
+        Me.LabelVersion.Size = New System.Drawing.Size(244, 17)
         Me.LabelVersion.TabIndex = 0
         Me.LabelVersion.Text = "Version"
         Me.LabelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -95,11 +99,11 @@ Partial Class AboutBox1
         'LabelCopyright
         '
         Me.LabelCopyright.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelCopyright.Location = New System.Drawing.Point(136, 48)
+        Me.LabelCopyright.Location = New System.Drawing.Point(355, 48)
         Me.LabelCopyright.Margin = New System.Windows.Forms.Padding(6, 0, 3, 0)
         Me.LabelCopyright.MaximumSize = New System.Drawing.Size(0, 17)
         Me.LabelCopyright.Name = "LabelCopyright"
-        Me.LabelCopyright.Size = New System.Drawing.Size(257, 17)
+        Me.LabelCopyright.Size = New System.Drawing.Size(244, 17)
         Me.LabelCopyright.TabIndex = 0
         Me.LabelCopyright.Text = "Copyright"
         Me.LabelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -107,11 +111,11 @@ Partial Class AboutBox1
         'LabelCompanyName
         '
         Me.LabelCompanyName.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelCompanyName.Location = New System.Drawing.Point(136, 72)
+        Me.LabelCompanyName.Location = New System.Drawing.Point(355, 72)
         Me.LabelCompanyName.Margin = New System.Windows.Forms.Padding(6, 0, 3, 0)
         Me.LabelCompanyName.MaximumSize = New System.Drawing.Size(0, 17)
         Me.LabelCompanyName.Name = "LabelCompanyName"
-        Me.LabelCompanyName.Size = New System.Drawing.Size(257, 17)
+        Me.LabelCompanyName.Size = New System.Drawing.Size(244, 17)
         Me.LabelCompanyName.TabIndex = 0
         Me.LabelCompanyName.Text = "Firmenname"
         Me.LabelCompanyName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -121,7 +125,7 @@ Partial Class AboutBox1
         Me.OKButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.OKButton.BackColor = System.Drawing.Color.Transparent
         Me.OKButton.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.OKButton.Location = New System.Drawing.Point(318, 222)
+        Me.OKButton.Location = New System.Drawing.Point(524, 222)
         Me.OKButton.Name = "OKButton"
         Me.OKButton.Size = New System.Drawing.Size(75, 22)
         Me.OKButton.TabIndex = 0
@@ -131,9 +135,9 @@ Partial Class AboutBox1
         'PictureBox1
         '
         Me.PictureBox1.BackgroundImage = CType(resources.GetObject("PictureBox1.BackgroundImage"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(133, 99)
+        Me.PictureBox1.Location = New System.Drawing.Point(352, 99)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(249, 90)
+        Me.PictureBox1.Size = New System.Drawing.Size(247, 90)
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
         '
@@ -145,12 +149,30 @@ Partial Class AboutBox1
         Me.RichTextBox1.Location = New System.Drawing.Point(3, 99)
         Me.RichTextBox1.Name = "RichTextBox1"
         Me.RichTextBox1.ReadOnly = True
-        Me.RichTextBox1.Size = New System.Drawing.Size(124, 117)
+        Me.RichTextBox1.Size = New System.Drawing.Size(343, 117)
         Me.RichTextBox1.TabIndex = 2
         Me.RichTextBox1.TabStop = False
-        Me.RichTextBox1.Text = "Available for help on #Mechi at QuakeNet (http://webchat.quakenet.org/?nick=Mechi" & _
-            "_...&channels=Mechi) or on Chiruclan IRC (http://webchat.chiruclan.de/?nick=Mech" & _
-            "i_...&channels=help)"
+        Me.RichTextBox1.Text = "Available for help on #Mechi at QuakeNet:" & Global.Microsoft.VisualBasic.ChrW(10) & "http://webchat.quakenet.org/?nick=Mechi" & _
+            "_...&channels=Mechi" & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(10) & " or on Chiruclan IRC:" & Global.Microsoft.VisualBasic.ChrW(10) & "http://webchat.chiruclan.de/?nick=Mec" & _
+            "hi_...&channels=help"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(3, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(39, 13)
+        Me.Label1.TabIndex = 3
+        Me.Label1.Text = "Label1"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(3, 24)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(39, 13)
+        Me.Label2.TabIndex = 4
+        Me.Label2.Text = "Label2"
         '
         'AboutBox1
         '
@@ -158,7 +180,7 @@ Partial Class AboutBox1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.CancelButton = Me.OKButton
-        Me.ClientSize = New System.Drawing.Size(414, 265)
+        Me.ClientSize = New System.Drawing.Size(620, 265)
         Me.Controls.Add(Me.TableLayoutPanel)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -169,11 +191,14 @@ Partial Class AboutBox1
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "About"
         Me.TableLayoutPanel.ResumeLayout(False)
+        Me.TableLayoutPanel.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
 
 End Class
