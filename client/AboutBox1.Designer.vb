@@ -37,6 +37,7 @@ Partial Class AboutBox1
         Me.LabelCompanyName = New System.Windows.Forms.Label()
         Me.OKButton = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.TableLayoutPanel.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -52,6 +53,7 @@ Partial Class AboutBox1
         Me.TableLayoutPanel.Controls.Add(Me.LabelCompanyName, 1, 3)
         Me.TableLayoutPanel.Controls.Add(Me.OKButton, 1, 5)
         Me.TableLayoutPanel.Controls.Add(Me.PictureBox1, 1, 4)
+        Me.TableLayoutPanel.Controls.Add(Me.RichTextBox1, 0, 4)
         Me.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel.Location = New System.Drawing.Point(9, 9)
         Me.TableLayoutPanel.Name = "TableLayoutPanel"
@@ -131,9 +133,24 @@ Partial Class AboutBox1
         Me.PictureBox1.BackgroundImage = CType(resources.GetObject("PictureBox1.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox1.Location = New System.Drawing.Point(133, 99)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(260, 90)
+        Me.PictureBox1.Size = New System.Drawing.Size(249, 90)
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
+        '
+        'RichTextBox1
+        '
+        Me.RichTextBox1.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.RichTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.RichTextBox1.Cursor = System.Windows.Forms.Cursors.Default
+        Me.RichTextBox1.Location = New System.Drawing.Point(3, 99)
+        Me.RichTextBox1.Name = "RichTextBox1"
+        Me.RichTextBox1.ReadOnly = True
+        Me.RichTextBox1.Size = New System.Drawing.Size(124, 117)
+        Me.RichTextBox1.TabIndex = 2
+        Me.RichTextBox1.TabStop = False
+        Me.RichTextBox1.Text = "Available for help on #Mechi at QuakeNet (http://webchat.quakenet.org/?nick=Mechi" & _
+            "_...&channels=Mechi) or on Chiruclan IRC (http://webchat.chiruclan.de/?nick=Mech" & _
+            "i_...&channels=help)"
         '
         'AboutBox1
         '
@@ -157,5 +174,6 @@ Partial Class AboutBox1
 
     End Sub
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
 
 End Class

@@ -10,7 +10,6 @@ Module server
     Dim conf As scripts.conf = New scripts.conf()
     Dim time As String = Date.Now
     Dim port As String
-    Dim _REVISION As String = My.Application.Info.Version.Revision.ToString
     Private server As TcpListener
     Private client As New TcpClient
     Private config_admpwd As String = conf.load("admin", "password")
@@ -28,7 +27,6 @@ Module server
         Dim nick As String
         Dim pwd As String
         Dim announce As String
-        Dim rev As String
     End Structure
 
     Private Sub SendToAllClients(ByVal s As String)
@@ -59,8 +57,6 @@ Module server
         End If
         Console.ForegroundColor = ConsoleColor.Green
         Console.Title = "ChatServ Server"
-        Console.WriteLine("# Chat-Server Revision: " & _REVISION)
-        scriptslog.LogMessage("# Chat-Server Revision: " + _REVISION, )
         Console.WriteLine("# <CTRL-C>")
         scriptslog.LogMessage("# <CTRL-C>")
         Console.WriteLine("# © Mechi Community")
@@ -90,14 +86,13 @@ Module server
                 c.streamr.Close()
                 c.streamw.Close()
             Else
-                c.rev = c.streamr.ReadLine
                 list.Add(c)
                 users.Add(c.nick)
                 SendToAllClients(OnlineList())
                 Console.ForegroundColor = ConsoleColor.Red
-                SendToAllClients("Has joined: " & c.nick & ". Client Revision: " & c.rev)
-                Console.WriteLine("#" & time & " " & c.nick & " has joined with Client Revision: " + c.rev)
-                scriptslog.LogMessage("#" & time & " " & c.nick & " has joined with Client Revision: " + c.rev)
+                SendToAllClients("*** " & c.nick & " has joined")
+                Console.WriteLine("#" & time & " *** " & c.nick & " has joined")
+                scriptslog.LogMessage("#" & time & " *** " & c.nick & " has joined")
                 Console.ForegroundColor = ConsoleColor.Cyan
 
                 Dim t As New Threading.Thread(AddressOf ListenToConnection)
@@ -196,9 +191,9 @@ Module server
                 scriptslog.LogMessage("*** " & time & " " & OnlineList())
                 SendToAllClients(OnlineList())
                 Console.ForegroundColor = ConsoleColor.Red
-                SendToAllClients("Has exited: " & con.nick)
-                Console.WriteLine("#" & time & " " & con.nick & " has exited.")
-                scriptslog.LogMessage("#" & time & " " & con.nick & " has exited.")
+                SendToAllClients("*** " & con.nick & "has quit")
+                Console.WriteLine("#" & time & " ***" & con.nick & " has quit")
+                scriptslog.LogMessage("#" & time & " ***" & con.nick & " has quit")
                 Exit Do
             End Try
         Loop

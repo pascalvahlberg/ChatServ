@@ -14,7 +14,6 @@ Public Class chat
     Private nick As String = "unknown"
     Private ip As String = "unknown"
     Private port As String = "unknown"
-    Private rev As String = My.Application.Info.Version.Build.ToString
     Private pwd As String = ""
 
     Private Sub Form1_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
@@ -26,7 +25,6 @@ Public Class chat
                 streamr = New StreamReader(stream)
 
                 streamw.WriteLine(nick)
-                streamw.WriteLine(rev)
                 streamw.Flush()
 
                 t.Start()
