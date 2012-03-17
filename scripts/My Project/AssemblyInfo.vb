@@ -10,9 +10,9 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("scripts")> 
 <Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("Mechi Community")> 
+<Assembly: AssemblyCompany("Chiruclan")> 
 <Assembly: AssemblyProduct("scripts")> 
-<Assembly: AssemblyCopyright("Copyright © Mechi Community 2011")> 
+<Assembly: AssemblyCopyright("Copyright © Chiruclan 2012")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>

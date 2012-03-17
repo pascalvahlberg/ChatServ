@@ -60,9 +60,9 @@ Namespace My.Resources
             End Set
         End Property
         
-        Friend ReadOnly Property banner() As System.Drawing.Bitmap
+        Friend ReadOnly Property chatserv_logo() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("banner", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("chatserv_logo", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

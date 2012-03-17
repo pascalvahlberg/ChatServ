@@ -96,7 +96,11 @@ Public Class chat
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         If String.IsNullOrWhiteSpace(TextBox1.Text) Then
-            RichTextBox1.AppendText(vbNewLine & "FILL IN A TEXT")
+            If String.IsNullOrEmpty(RichTextBox1.Text) Then
+                RichTextBox1.AppendText("Cannot send an empty String!")
+            Else
+                RichTextBox1.AppendText(vbNewLine & "Cannot send an empty String!")
+            End If
         ElseIf TextBox1.Text = "#admin" Then
             pwd = InputBox("Password: ", "Administrationpassword")
             streamw.WriteLine(TextBox1.Text)
@@ -104,7 +108,7 @@ Public Class chat
             streamw.Flush()
             TextBox1.Clear()
         ElseIf TextBox1.Text = "#info" Then
-            MessageBox.Show("ChatServ Chatclient by Mechi Community Revision ID: " + My.Application.Info.Version.Revision.ToString + " Build ID: " + My.Application.Info.Version.Build.ToString, "Info", MessageBoxButtons.OK, MessageBoxIcon.Question)
+            AboutBox1.Show()
         Else
             streamw.WriteLine(TextBox1.Text)
             streamw.Flush()
@@ -163,5 +167,16 @@ Public Class chat
             NotifyIcon1.ShowBalloonTip("10")
             Timer2.Enabled = False
         End If
+    End Sub
+
+    Private Sub ToolStripButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton2.Click
+        AboutBox1.Show()
+    End Sub
+
+    Private Sub HideToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles HideToolStripMenuItem1.Click
+        Me.Hide()
+        NotifyIcon1.Visible = True
+        NotifyIcon1.ShowBalloonTip("10")
+        Timer2.Enabled = False
     End Sub
 End Class
