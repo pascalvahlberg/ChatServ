@@ -63,7 +63,7 @@ Partial Class chat
         '
         'NotifyIcon1
         '
-        Me.NotifyIcon1.BalloonTipText = "The ChatServ-Client is now hided. Click here to restore the window."
+        Me.NotifyIcon1.BalloonTipText = "The ChatServ Client is now hidden. Click here to restore the window."
         Me.NotifyIcon1.BalloonTipTitle = "ChatServ-Client"
         Me.NotifyIcon1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.NotifyIcon1.Icon = CType(resources.GetObject("NotifyIcon1.Icon"), System.Drawing.Icon)

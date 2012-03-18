@@ -22,6 +22,7 @@ Partial Class Server_Manager
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Server_Manager))
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
@@ -40,13 +41,13 @@ Partial Class Server_Manager
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.Location = New System.Drawing.Point(12, 12)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(740, 303)
+        Me.ListBox1.Size = New System.Drawing.Size(435, 303)
         Me.ListBox1.TabIndex = 0
         '
         'Button1
         '
         Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.Location = New System.Drawing.Point(599, 346)
+        Me.Button1.Location = New System.Drawing.Point(294, 346)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(153, 23)
         Me.Button1.TabIndex = 1
@@ -59,13 +60,13 @@ Partial Class Server_Manager
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TextBox1.Location = New System.Drawing.Point(76, 321)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(514, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(209, 20)
         Me.TextBox1.TabIndex = 2
         '
         'TextBox2
         '
         Me.TextBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox2.Location = New System.Drawing.Point(631, 321)
+        Me.TextBox2.Location = New System.Drawing.Point(326, 321)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(121, 20)
         Me.TextBox2.TabIndex = 3
@@ -94,7 +95,7 @@ Partial Class Server_Manager
         '
         Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(596, 324)
+        Me.Label3.Location = New System.Drawing.Point(291, 324)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(29, 13)
         Me.Label3.TabIndex = 6
@@ -106,14 +107,15 @@ Partial Class Server_Manager
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TextBox3.Location = New System.Drawing.Point(76, 348)
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(514, 20)
+        Me.TextBox3.Size = New System.Drawing.Size(209, 20)
         Me.TextBox3.TabIndex = 7
         '
         'Server_Manager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(764, 380)
+        Me.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.ClientSize = New System.Drawing.Size(459, 380)
         Me.Controls.Add(Me.TextBox3)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
@@ -122,6 +124,7 @@ Partial Class Server_Manager
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.ListBox1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Server_Manager"
         Me.Text = "Server Manager"
         Me.ResumeLayout(False)

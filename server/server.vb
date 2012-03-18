@@ -118,7 +118,7 @@ Module server
                 c.streamw.WriteLine(config_name & " " & config_port)
                 c.streamw.Flush()
                 While server.Connected
-                    c.streamr.ReadLine()
+
                 End While
                 c.stream.Close()
                 c.streamw.Close()
@@ -166,8 +166,8 @@ Module server
                     End
                 ElseIf tmp.StartsWith(config_cmd + "announce") And config_admpwd = con.pwd Then
                     Console.ForegroundColor = ConsoleColor.Cyan
-                    Console.WriteLine("!" + time & " " & tmp.Replace(config_cmd + "announce", "Announce by " + con.nick + ":"))
-                    scriptslog.LogMessage("!" + time & " " & tmp.Replace(config_cmd + "announce", "Announce by " + con.nick + ":"))
+                    Console.WriteLine("!" & time & " <Announce by " & con.nick & ": " & tmp.Remove(0, 9))
+                    scriptslog.LogMessage("!" & time & " <Announce by " & con.nick & ": " & tmp.Remove(0, 9))
                     SendToAllClients("<Announce by " + con.nick + "> " & tmp.Remove(0, 9))
                 ElseIf tmp.StartsWith("!afk") Then
                     Console.ForegroundColor = ConsoleColor.Yellow
