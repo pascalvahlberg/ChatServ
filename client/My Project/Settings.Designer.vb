@@ -53,6 +53,42 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property myIP() As String
+            Get
+                Return CType(Me("myIP"),String)
+            End Get
+            Set
+                Me("myIP") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(), _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.Configuration.DefaultSettingValueAttribute("")> _
+        Public Property myPort() As String
+            Get
+                Return CType(Me("myPort"), String)
+            End Get
+            Set(ByVal value As String)
+                Me("myPort") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property myNick() As String
+            Get
+                Return CType(Me("myNick"),String)
+            End Get
+            Set
+                Me("myNick") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

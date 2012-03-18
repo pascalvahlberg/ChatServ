@@ -19,9 +19,10 @@ Public Class chat
 
     Private Sub Form1_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         Try
-            ip = My.Forms.Server_Manager.TextBox1.Text.ToString
-            port = My.Forms.Server_Manager.TextBox2.Text.ToString
-            nick = My.Forms.Server_Manager.TextBox3.Text.ToString
+            My.Settings.Reload()
+            ip = My.Settings.myIP
+            port = My.Settings.myPort
+            nick = My.Settings.myNick
             Server_Manager.Close()
             TextBox1.Focus()
             client.Connect(ip, Integer.Parse(port))

@@ -17,6 +17,10 @@ Public Class Server_Manager
 
     Private Sub Server_Manager_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
+            My.Settings.Reload()
+            TextBox1.Text = My.Settings.myIP
+            TextBox2.Text = My.Settings.myPort
+            TextBox3.Text = My.Settings.myNick
             client.Connect("chiruclan.de", 8002)
             If client.Connected Then
                 Dim content As String = ""
@@ -55,14 +59,17 @@ Public Class Server_Manager
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         If String.IsNullOrWhiteSpace(TextBox1.Text) Then
-            TextBox1.Text = "127.0.0.1"
+            My.Settings.myIP = "127.0.0.1"
+            My.Settings.Save()
         End If
         If String.IsNullOrWhiteSpace(TextBox2.Text) Then
-            TextBox2.Text = "8000"
+            My.Settings.myPort = "8000"
+            My.Settings.Save()
         End If
         If String.IsNullOrWhiteSpace(TextBox3.Text) Then
             Dim rand As New System.Random()
-            TextBox3.Text = "Guest_" & rand.Next()
+            My.Settings.myNick = "Guest_" & rand.Next()
+            My.Settings.Save()
         End If
         chat.Show()
         chat.Focus()
@@ -95,8 +102,26 @@ Public Class Server_Manager
             If c.name = ListBox1.SelectedItem() Then
                 TextBox1.Text = c.ip
                 TextBox2.Text = c.port
+                My.Settings.myIP = c.ip
+                My.Settings.myPort = c.port
+                My.Settings.Save()
                 TextBox3.Focus()
             End If
         Next
+    End Sub
+
+    Private Sub TextBox1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox1.TextChanged
+        My.Settings.myIP = TextBox1.Text
+        My.Settings.Save()
+    End Sub
+
+    Private Sub TextBox2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.TextChanged
+        My.Settings.myPort = TextBox2.Text
+        My.Settings.Save()
+    End Sub
+
+    Private Sub TextBox3_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox3.TextChanged
+        My.Settings.myNick = TextBox3.Text
+        My.Settings.Save()
     End Sub
 End Class

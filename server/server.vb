@@ -17,7 +17,6 @@ Module server
     Private config_ip As String = conf.load("network", "ip") 'currently buggy when other ip than 0.0.0.0
     Private config_port As String = conf.load("network", "port")
     Private config_name As String = conf.load("network", "name")
-    Private config_host As String = conf.load("network", "host")
     Private ipendpoint As IPEndPoint = New IPEndPoint(IPAddress.Parse(config_ip), config_port)
     Private list As New List(Of Connection)
     Private users As New List(Of String)
@@ -109,24 +108,24 @@ Module server
     Private Sub RegisterServer()
         Dim server As New TcpClient
         Try
-            If Not String.IsNullOrWhiteSpace(config_host) Then
-                server.Connect("chiruclan.de", 8001)
-                If server.Connected Then
-                    Console.WriteLine("*** Registered Server")
-                    Dim c As New Connection
-                    c.stream = server.GetStream
-                    c.streamr = New StreamReader(c.stream)
-                    c.streamw = New StreamWriter(c.stream)
-                    c.streamw.WriteLine(config_name & " " & config_host & " " & config_port)
-                    c.streamw.Flush()
-                    While server.Connected
-                        c.streamr.ReadLine()
-                    End While
-                    c.stream.Close()
-                    c.streamw.Close()
-                    c.streamr.Close()
-                    Console.WriteLine("*** Unregistered Server")
-                End If
+            server.Connect("chiruclan.de", 8001)
+            If server.Connected Then
+                Console.WriteLine("*** Registered Server")
+                Dim c As New Connection
+                c.stream = server.GetStream
+                c.streamr = New StreamReader(c.stream)
+                c.streamw = New StreamWriter(c.stream)
+                c.streamw.WriteLine(config_name & " " & config_port)
+                c.streamw.Flush()
+                While server.Connected
+                    c.streamr.ReadLine()
+                End While
+                c.stream.Close()
+                c.streamw.Close()
+                c.streamr.Close()
+                Console.WriteLine("*** Unregistered Server")
+                RegisterServer()
+            Else
                 server.Close()
                 RegisterServer()
             End If
