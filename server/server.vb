@@ -225,7 +225,7 @@ Module server
                 scriptslog.LogMessage("*** " & time & " " & OnlineList())
                 SendToAllClients(OnlineList())
                 Console.ForegroundColor = ConsoleColor.Red
-                SendToAllClients("*** " & con.nick & "has quit")
+                SendToAllClients("*** " & con.nick & " has quit")
                 Console.WriteLine("#" & time & " *** " & con.nick & " has quit")
                 scriptslog.LogMessage("#" & time & " *** " & con.nick & " has quit")
                 Exit Do
