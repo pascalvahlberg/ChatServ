@@ -109,14 +109,15 @@ Module server
     Private Sub RegisterServer()
         Dim server As New TcpClient
         Try
-                server.Connect("localhost", 8001)
+            If Not String.IsNullOrWhiteSpace(config_host) Then
+                server.Connect("chiruclan.de", 8001)
                 If server.Connected Then
                     Console.WriteLine("*** Registered Server")
                     Dim c As New Connection
                     c.stream = server.GetStream
                     c.streamr = New StreamReader(c.stream)
                     c.streamw = New StreamWriter(c.stream)
-                    c.streamw.WriteLine(config_name & " " & config_host & " " & config_port)
+                    c.streamw.WriteLine(config_name & " " & config_host & config_port)
                     c.streamw.Flush()
                     While server.Connected
                         c.streamr.ReadLine()
@@ -128,6 +129,7 @@ Module server
                 End If
                 server.Close()
                 RegisterServer()
+            End If
         Catch ex As Exception
             RegisterServer()
         End Try

@@ -17,7 +17,7 @@ Public Class Server_Manager
 
     Private Sub Server_Manager_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
-            client.Connect("localhost", 8002)
+            client.Connect("chiruclan.de", 8002)
             If client.Connected Then
                 Dim content As String = ""
                 stream = client.GetStream
