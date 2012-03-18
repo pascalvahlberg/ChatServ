@@ -123,22 +123,6 @@ Public Class chat
         End If
     End Sub
 
-    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'ip = InputBox("Hostname of the Server:" & vbNewLine & "(default = chatserv.chiruclan.de) ", "Hostname:", "")
-        'If ip = "" Then
-        '   ip = "chatserv.chiruclan.de"
-        'End If
-        'port = InputBox("Port:" & vbNewLine & "(default = 8000)", "Port of Server", "")
-        'If port = "" Then
-        '    port = "8000"
-        'End If
-        'nick = InputBox("Nickname:" & vbNewLine & "(default = Guest_x)", "Choose nickname", "")
-        'If nick = "" Then
-        '    Dim rand As New System.Random()
-        '    nick = "Guest_" & rand.Next()
-        'End If
-    End Sub
-
     Private Sub TextBox1_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TextBox1.KeyDown
         If e.KeyCode = 13 Then
             Call Button1_Click(Button1, e)
