@@ -2,6 +2,7 @@
 'Do not remove this Copyright!
 
 Imports System.Net.Sockets
+Imports System.Net
 Imports System.IO
 
 Public Class chat

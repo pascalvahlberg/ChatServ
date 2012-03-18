@@ -110,7 +110,7 @@ Module server
         Try
             server.Connect("chiruclan.de", 8001)
             If server.Connected Then
-                Console.WriteLine("# Registered Server")
+                Console.WriteLine("*** Registered Server")
                 Dim c As New Connection
                 c.stream = server.GetStream
                 c.streamr = New StreamReader(c.stream)
@@ -123,9 +123,11 @@ Module server
                 c.stream.Close()
                 c.streamw.Close()
                 c.streamr.Close()
-                Console.WriteLine("# Disconnected Server")
+                Console.WriteLine("*** Unregistered Server")
             End If
             server.Close()
+            Dim t As New Threading.Thread(AddressOf RegisterServer)
+            t.Start()
         Catch ex As Exception
 
         End Try
