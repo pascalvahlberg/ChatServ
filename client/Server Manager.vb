@@ -3,10 +3,10 @@ Imports System.IO
 
 Public Class Server_Manager
 
-    Dim client As TcpClient
-    Dim stream As NetworkStream
-    Dim streamr As StreamReader
-    Dim list As New List(Of Avail)
+    Private client As New TcpClient
+    Private stream As NetworkStream
+    Private streamr As StreamReader
+    Private list As New List(Of Avail)
 
     Private Structure Avail
         Dim name As String
@@ -23,18 +23,24 @@ Public Class Server_Manager
                 streamr = New StreamReader(stream)
                 While client.Connected
                     content = streamr.ReadLine()
-                    If content = "/QUIT" Then
+                    If Not String.IsNullOrWhiteSpace(content) Then
+                        If content = "/QUIT" Then
+                            client.Close()
+                            stream.Close()
+                            streamr.Close()
+                        Else
+                            Dim c As New Avail
+                            Dim cs As Array = content.Split(";")
+                            c.name = cs(0)
+                            c.ip = cs(1)
+                            c.port = cs(2)
+                            ListBox1.Items.Add(c.name)
+                            list.Add(c)
+                        End If
+                    Else
                         client.Close()
                         stream.Close()
                         streamr.Close()
-                    Else
-                        Dim c As New Avail
-                        Dim cs As Array = content.Split(" ")
-                        c.name = cs(0)
-                        c.ip = cs(1)
-                        c.port = cs(2)
-                        ListBox1.Items.Add(c.name)
-                        list.Add(c)
                     End If
                 End While
                 client.Close()
@@ -85,7 +91,7 @@ Public Class Server_Manager
 
     Private Sub ListBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListBox1.SelectedIndexChanged
         For Each c In list
-            If c.name = ListBox1.SelectedValue() Then
+            If c.name = ListBox1.SelectedItem() Then
                 TextBox1.Text = c.ip
                 TextBox2.Text = c.port
                 TextBox3.Focus()
