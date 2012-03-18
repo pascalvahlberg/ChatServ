@@ -117,7 +117,7 @@ Module server
                     c.stream = server.GetStream
                     c.streamr = New StreamReader(c.stream)
                     c.streamw = New StreamWriter(c.stream)
-                    c.streamw.WriteLine(config_name & " " & config_host & config_port)
+                    c.streamw.WriteLine(config_name & " " & config_host & " " & config_port)
                     c.streamw.Flush()
                     While server.Connected
                         c.streamr.ReadLine()
