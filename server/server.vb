@@ -109,7 +109,6 @@ Module server
     Private Sub RegisterServer()
         Dim server As New TcpClient
         Try
-            If Not String.IsNullOrWhiteSpace(config_host) Then
                 server.Connect("localhost", 8001)
                 If server.Connected Then
                     Console.WriteLine("*** Registered Server")
@@ -129,7 +128,6 @@ Module server
                 End If
                 server.Close()
                 RegisterServer()
-            End If
         Catch ex As Exception
             RegisterServer()
         End Try
