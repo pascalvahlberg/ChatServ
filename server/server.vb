@@ -52,20 +52,17 @@ Module server
     Sub Main()
         If IO.File.Exists("config.ini") = False Then
             MsgBox("config.ini doesn't exist!", MsgBoxStyle.Critical, "config missing")
+            End
         End If
         If ConsoleSpecialKey.ControlC Then
             End
         End If
         Console.ForegroundColor = ConsoleColor.Green
-        Console.Title = "ChatServ Server"
+        Console.Title = "ChatServ Server - " & config_name
         Console.WriteLine("# <CTRL-C>")
-        scriptslog.LogMessage("# <CTRL-C>")
         Console.WriteLine("# Powered by Chiruclan")
-        scriptslog.LogMessage("# Powered by Chiruclan")
         Console.WriteLine("# Commandstring is " + config_cmd)
-        scriptslog.LogMessage("# Commandstring is " + config_cmd)
         Console.WriteLine("# Loaded at " & time)
-        scriptslog.LogMessage("# Loaded at " & time)
         Dim reg As New Threading.Thread(AddressOf RegisterServer)
         reg.Start()
         server = New TcpListener(ipendpoint)
@@ -84,7 +81,7 @@ Module server
             c.streamw = New StreamWriter(c.stream)
 
             c.nick = c.streamr.ReadLine
-            If c.nick.StartsWith("@") Or c.nick.StartsWith("<") Or c.nick.EndsWith(">") Or users.Contains(c.nick) Then
+            If c.nick.StartsWith("@") Or c.nick.StartsWith("<") Or c.nick.EndsWith(">") Or users.Contains(c.nick) Or c.nick.Contains(" ") Then
                 client.Close()
                 c.stream.Close()
                 c.streamr.Close()
@@ -99,6 +96,8 @@ Module server
                 scriptslog.LogMessage("#" & time & " *** " & c.nick & " has joined")
                 Console.ForegroundColor = ConsoleColor.Cyan
 
+                c.streamw.WriteLine("/SERVERNAME " & config_name)
+                c.streamw.Flush()
                 Dim t As New Threading.Thread(AddressOf ListenToConnection)
                 t.Start(c)
             End If
@@ -139,7 +138,7 @@ Module server
             Try
                 Dim announce As String = con.announce
                 Dim tmp As String = con.streamr.ReadLine
-                If tmp.StartsWith(config_cmd & "kill") And config_admpwd = con.pwd Then
+                If tmp.StartsWith(config_cmd & "kill ") And config_admpwd = con.pwd Then
                     Console.ForegroundColor = ConsoleColor.Yellow
                     Dim Kickname As String = tmp.Remove(0, 6)
                     For Each Connection In list
@@ -164,7 +163,7 @@ Module server
                     SendToAllClients("*** SERVER SHUTDOWN BY " & con.nick.ToUpper.Remove(0, 1) & " ***")
                     SendToAllClients("/SHUTDOWN")
                     End
-                ElseIf tmp.StartsWith(config_cmd + "announce") And config_admpwd = con.pwd Then
+                ElseIf tmp.StartsWith(config_cmd + "announce ") And config_admpwd = con.pwd Then
                     Console.ForegroundColor = ConsoleColor.Cyan
                     Console.WriteLine("!" & time & " <Announce by " & con.nick & ": " & tmp.Remove(0, 9))
                     scriptslog.LogMessage("!" & time & " <Announce by " & con.nick & ": " & tmp.Remove(0, 9))

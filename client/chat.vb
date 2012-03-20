@@ -54,7 +54,9 @@ Public Class chat
     End Sub
 
     Private Sub AddItem(ByVal s As String)
-        If s.StartsWith("/SHUTDOWN") Then
+        If s.StartsWith("/SERVERNAME ") Then
+            Me.Text = "ChatServ Client - " & s.Remove(0, 11)
+        ElseIf s.StartsWith("/SHUTDOWN") Then
             If client.Connected Then
                 client.Close()
                 stream.Close()
