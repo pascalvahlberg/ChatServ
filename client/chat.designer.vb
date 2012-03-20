@@ -162,9 +162,9 @@ Partial Class chat
         Me.ClientSize = New System.Drawing.Size(748, 428)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.RichTextBox1)
-        Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.ListBox1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "chat"
         Me.Text = "ChatServ Client"
