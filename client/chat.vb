@@ -73,7 +73,7 @@ Public Class chat
                 If names(i).StartsWith("@") Then
                     ListView1.Items.Add(names(i).Remove(0, 1))
                     Dim item As Integer = ListView1.Items.Count - 1
-                    ListView1.Items(item).ForeColor = Color.Red
+                    ListView1.Items(item).ForeColor = Color.DarkRed
                     ListView1.Items(item).Font = New Font(ListView1.Items(item).Font, FontStyle.Bold)
                 Else
                     ListView1.Items.Add(names(i))
@@ -81,35 +81,72 @@ Public Class chat
             Next
         Else
             Dim nick As String = s.Split(" ")(0)
+            Dim fulltext As Integer = RichTextBox1.Text.Length + vbNewLine.Length + s.Length
+            If fulltext >= RichTextBox1.MaxLength Then
+                RichTextBox1.Clear()
+            End If
             If nick.StartsWith("<") And nick.EndsWith(">") And nick.Length >= 2 Then
                 Dim item As String = nick.Replace("<", "").Replace(">", "")
-                Dim usedcolor As Color = RichTextBox1.ForeColor
-                If item.StartsWith("@") Then
-                    item = item.Remove(0, 1)
-                    usedcolor = Color.Red
-                End If
                 With RichTextBox1
-                    .Select(RichTextBox1.TextLength, 0)
+                    .Select(.TextLength, 0)
                     .SelectionFont = New Font(.Font, FontStyle.Bold)
                     .AppendText(vbNewLine & "<")
-                    .SelectionColor = usedcolor
-                    .AppendText(item)
-                    .SelectionColor = .ForeColor
+                    If item.StartsWith("@") Then
+                        .SelectionColor = Color.DarkRed
+                        .AppendText(item.Remove(0, 1))
+                        .SelectionColor = .ForeColor
+                    Else
+                        .AppendText(item)
+                    End If
                     .AppendText(">")
                     .SelectionFont = .Font
                     .AppendText(s.Remove(0, nick.Length))
                 End With
+            ElseIf nick = "<Announce" Then
+                Dim item As String = s.Split(" ")(2).Replace(">", "").Remove(0, 1)
+                With RichTextBox1
+                    .Select(.TextLength, 0)
+                    .SelectionFont = New Font(.Font, FontStyle.Bold)
+                    .AppendText(vbNewLine & "<")
+                    .SelectionColor = Color.DarkGreen
+                    .AppendText("Announce by ")
+                    .SelectionColor = Color.DarkRed
+                    .AppendText(item)
+                    .SelectionColor = .ForeColor
+                    .AppendText(">")
+                    .SelectionFont = .Font
+                    .AppendText(s.Remove(0, 15 + item.Length))
+                End With
+            ElseIf nick = "***" Then
+                With RichTextBox1
+                    .Select(.TextLength, 0)
+                    .SelectionFont = New Font(.Font, FontStyle.Bold)
+                    .SelectionColor = Color.DarkBlue
+                    If String.IsNullOrWhiteSpace(RichTextBox1.Text) Then
+                        .AppendText(s)
+                    Else
+                        .AppendText(vbNewLine & s)
+                    End If
+                    .SelectionColor = .ForeColor
+                    .SelectionFont = .Font
+                End With
             Else
-                If String.IsNullOrWhiteSpace(RichTextBox1.Text) Then
-                    RichTextBox1.AppendText(s)
-                Else
-                    RichTextBox1.AppendText(vbNewLine & s)
-                End If
-                If RichTextBox1.Text.Length = RichTextBox1.MaxLength Then
-                    RichTextBox1.Text = s
-                End If
+                With RichTextBox1
+                    .Select(.TextLength, 0)
+                    .SelectionFont = New Font(.Font, FontStyle.Bold)
+                    .SelectionColor = Color.DarkViolet
+                    If String.IsNullOrWhiteSpace(.Text) Then
+                        .AppendText("unknown string received: ")
+                    Else
+                        .AppendText(vbNewLine & "unknown string received: ")
+                    End If
+                    .SelectionColor = .ForeColor
+                    .SelectionFont = .Font
+                    .AppendText(s)
+                End With
             End If
-            RichTextBox1.SendToBack()
+            RichTextBox1.SelectionStart = RichTextBox1.TextLength
+            RichTextBox1.ScrollToCaret()
         End If
     End Sub
 

@@ -151,7 +151,7 @@ Module server
                             Console.WriteLine(time & " " & OnlineList())
                             scriptslog.LogMessage("*** " & time & " " & OnlineList())
                             SendToAllClients(OnlineList())
-                            SendToAllClients("--> " & Kickname & " is killed.")
+                            SendToAllClients("*** " & Kickname & " is killed")
                             Console.WriteLine("*" & time & " " & Kickname & " is killed!")
                             scriptslog.LogMessage("*" & time & " " & Kickname & " is killed!")
                             Exit For
@@ -159,7 +159,7 @@ Module server
                     Next
                 ElseIf tmp.StartsWith(config_cmd & "shutdown") And config_admpwd = con.pwd Then
                     Console.ForegroundColor = ConsoleColor.Yellow
-                    scriptslog.LogMessage("***Server shutdown by " + con.nick + "****")
+                    scriptslog.LogMessage("*** Server shutdown by " + con.nick + " ****")
                     SendToAllClients("*** SERVER SHUTDOWN BY " & con.nick.ToUpper.Remove(0, 1) & " ***")
                     SendToAllClients("/SHUTDOWN")
                     End
@@ -172,12 +172,12 @@ Module server
                     Console.ForegroundColor = ConsoleColor.Yellow
                     Console.WriteLine("#" & time & " " & con.nick & " is AFK right now")
                     scriptslog.LogMessage("#" + time + " " + con.nick + " is AFK right now")
-                    SendToAllClients(con.nick & " is AFK right now")
+                    SendToAllClients("*** " & con.nick & " is AFK right now")
                 ElseIf tmp.StartsWith("!notafk") Then
                     Console.ForegroundColor = ConsoleColor.Yellow
                     Console.WriteLine("#" & time & " " & con.nick & " is not longer AFK")
                     scriptslog.LogMessage("#" + time + " " + con.nick + " is not longer AFK")
-                    SendToAllClients(con.nick & " is not longer AFK")
+                    SendToAllClients("*** " & con.nick & " is not longer AFK")
                 ElseIf tmp.StartsWith("#admin") And Not tmp.Contains(" ") Then
                     con.pwd = con.streamr.ReadLine
                     If con.pwd = config_admpwd And Not con.nick.StartsWith("@") Then
@@ -204,7 +204,7 @@ Module server
                     scriptslog.LogMessage("*** " & time & " " & OnlineList())
                     SendToAllClients(OnlineList())
                     Console.ForegroundColor = ConsoleColor.Yellow
-                    SendToAllClients("--> " & con.nick & " is killed by Server.")
+                    SendToAllClients("*** " & con.nick & " is killed by Server")
                     Console.WriteLine("*" & time & " " & con.nick & " was killed by Server!")
                     scriptslog.LogMessage("*" & time & " " & con.nick & " was killed by Server!")
                 ElseIf tmp.StartsWith(config_cmd + "names") Then
