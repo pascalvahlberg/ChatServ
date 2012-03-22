@@ -236,13 +236,6 @@ Public Class chat
         AboutBox1.Show()
     End Sub
 
-    Private Sub HideToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles HideToolStripMenuItem1.Click
-        Me.Hide()
-        NotifyIcon1.Visible = True
-        NotifyIcon1.ShowBalloonTip("10")
-        Timer2.Enabled = False
-    End Sub
-
     Private Sub ToolStripButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton1.Click
         If client.Connected Then
             If MsgBox("Do you really want to exit?", vbYesNo) = vbYes Then
@@ -254,5 +247,12 @@ Public Class chat
                 Application.Exit()
             End If
         End If
+    End Sub
+
+    Private Sub ToolStripButton3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton3.Click
+        Me.Hide()
+        NotifyIcon1.Visible = True
+        NotifyIcon1.ShowBalloonTip("10")
+        Timer2.Enabled = False
     End Sub
 End Class

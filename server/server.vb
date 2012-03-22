@@ -165,8 +165,8 @@ Module server
                     End
                 ElseIf tmp.StartsWith(config_cmd + "announce ") And config_admpwd = con.pwd Then
                     Console.ForegroundColor = ConsoleColor.Cyan
-                    Console.WriteLine("!" & time & " <Announce by " & con.nick & ": " & tmp.Remove(0, 9))
-                    scriptslog.LogMessage("!" & time & " <Announce by " & con.nick & ": " & tmp.Remove(0, 9))
+                    Console.WriteLine("!" & time & " <Announce by " & con.nick & "> " & tmp.Remove(0, 9))
+                    scriptslog.LogMessage("!" & time & " <Announce by " & con.nick & "> " & tmp.Remove(0, 9))
                     SendToAllClients("<Announce by " + con.nick + "> " & tmp.Remove(0, 9))
                 ElseIf tmp.StartsWith("!afk") Then
                     Console.ForegroundColor = ConsoleColor.Yellow
