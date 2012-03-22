@@ -30,13 +30,13 @@ Partial Class chat
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ShowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.HideToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ListView1 = New System.Windows.Forms.ListView()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -45,16 +45,17 @@ Partial Class chat
         '
         Me.TextBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox1.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox1.Location = New System.Drawing.Point(12, 396)
         Me.TextBox1.MaxLength = 512
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(653, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(653, 26)
         Me.TextBox1.TabIndex = 1
         '
         'Button1
         '
         Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.Location = New System.Drawing.Point(671, 394)
+        Me.Button1.Location = New System.Drawing.Point(671, 398)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(65, 23)
         Me.Button1.TabIndex = 2
@@ -73,27 +74,17 @@ Partial Class chat
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(112, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(101, 26)
         '
         'ShowToolStripMenuItem
         '
         Me.ShowToolStripMenuItem.Name = "ShowToolStripMenuItem"
-        Me.ShowToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
+        Me.ShowToolStripMenuItem.Size = New System.Drawing.Size(100, 22)
         Me.ShowToolStripMenuItem.Text = "Show"
         '
         'Timer2
         '
         Me.Timer2.Enabled = True
-        '
-        'ListBox1
-        '
-        Me.ListBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(573, 27)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(163, 355)
-        Me.ListBox1.TabIndex = 5
         '
         'RichTextBox1
         '
@@ -102,6 +93,7 @@ Partial Class chat
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RichTextBox1.BackColor = System.Drawing.SystemColors.Window
         Me.RichTextBox1.Cursor = System.Windows.Forms.Cursors.Default
+        Me.RichTextBox1.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RichTextBox1.Location = New System.Drawing.Point(12, 28)
         Me.RichTextBox1.Name = "RichTextBox1"
         Me.RichTextBox1.ReadOnly = True
@@ -151,8 +143,22 @@ Partial Class chat
         'HideToolStripMenuItem1
         '
         Me.HideToolStripMenuItem1.Name = "HideToolStripMenuItem1"
-        Me.HideToolStripMenuItem1.Size = New System.Drawing.Size(106, 22)
+        Me.HideToolStripMenuItem1.Size = New System.Drawing.Size(95, 22)
         Me.HideToolStripMenuItem1.Text = "Hide"
+        '
+        'ListView1
+        '
+        Me.ListView1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ListView1.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ListView1.Location = New System.Drawing.Point(573, 28)
+        Me.ListView1.MultiSelect = False
+        Me.ListView1.Name = "ListView1"
+        Me.ListView1.ShowGroups = False
+        Me.ListView1.Size = New System.Drawing.Size(163, 354)
+        Me.ListView1.TabIndex = 8
+        Me.ListView1.UseCompatibleStateImageBehavior = False
+        Me.ListView1.View = System.Windows.Forms.View.List
         '
         'chat
         '
@@ -160,11 +166,11 @@ Partial Class chat
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.ClientSize = New System.Drawing.Size(748, 428)
+        Me.Controls.Add(Me.ListView1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.RichTextBox1)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.ListBox1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "chat"
         Me.Text = "ChatServ Client"
@@ -183,10 +189,10 @@ Partial Class chat
     Friend WithEvents ToolStripDropDownButton1 As System.Windows.Forms.ToolStripDropDownButton
     Friend WithEvents HideToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Timer2 As System.Windows.Forms.Timer
-    Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
     Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Friend WithEvents ToolStripButton2 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ListView1 As System.Windows.Forms.ListView
 
 End Class

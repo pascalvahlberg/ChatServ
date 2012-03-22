@@ -81,7 +81,7 @@ Module server
             c.streamw = New StreamWriter(c.stream)
 
             c.nick = c.streamr.ReadLine
-            If c.nick.StartsWith("@") Or c.nick.StartsWith("<") Or c.nick.EndsWith(">") Or users.Contains(c.nick) Or c.nick.Contains(" ") Then
+            If c.nick.Contains("@") Or c.nick.Contains("<") Or c.nick.Contains(">") Or users.Contains(c.nick) Or c.nick.Contains(" ") Then
                 client.Close()
                 c.stream.Close()
                 c.streamr.Close()

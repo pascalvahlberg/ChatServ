@@ -68,22 +68,48 @@ Public Class chat
         ElseIf s.StartsWith("/names") Then
             Dim i As Integer
             Dim names() As String = s.Split(" ")
-            ListBox1.Items.Clear()
+            ListView1.Items.Clear()
             For i = 1 To names.Length - 1
-                With ListBox1
-                    .Items.Add(names(i))
-                End With
+                If names(i).StartsWith("@") Then
+                    ListView1.Items.Add(names(i).Remove(0, 1))
+                    Dim item As Integer = ListView1.Items.Count - 1
+                    ListView1.Items(item).ForeColor = Color.Red
+                    ListView1.Items(item).Font = New Font(ListView1.Items(item).Font, FontStyle.Bold)
+                Else
+                    ListView1.Items.Add(names(i))
+                End If
             Next
         Else
-            If String.IsNullOrWhiteSpace(RichTextBox1.Text) Then
-                RichTextBox1.AppendText(s)
+            Dim nick As String = s.Split(" ")(0)
+            If nick.StartsWith("<") And nick.EndsWith(">") And nick.Length >= 2 Then
+                Dim item As String = nick.Replace("<", "").Replace(">", "")
+                Dim usedcolor As Color = RichTextBox1.ForeColor
+                If item.StartsWith("@") Then
+                    item = item.Remove(0, 1)
+                    usedcolor = Color.Red
+                End If
+                With RichTextBox1
+                    .Select(RichTextBox1.TextLength, 0)
+                    .SelectionFont = New Font(.Font, FontStyle.Bold)
+                    .AppendText(vbNewLine & "<")
+                    .SelectionColor = usedcolor
+                    .AppendText(item)
+                    .SelectionColor = .ForeColor
+                    .AppendText(">")
+                    .SelectionFont = .Font
+                    .AppendText(s.Remove(0, nick.Length))
+                End With
             Else
-                RichTextBox1.AppendText(vbNewLine & s)
+                If String.IsNullOrWhiteSpace(RichTextBox1.Text) Then
+                    RichTextBox1.AppendText(s)
+                Else
+                    RichTextBox1.AppendText(vbNewLine & s)
+                End If
+                If RichTextBox1.Text.Length = RichTextBox1.MaxLength Then
+                    RichTextBox1.Text = s
+                End If
             End If
-            If RichTextBox1.Text.Length = RichTextBox1.MaxLength Then
-                RichTextBox1.Text = s
-            End If
-            TextBox1.SendToBack()
+            RichTextBox1.SendToBack()
         End If
     End Sub
 
