@@ -1,80 +1,80 @@
-LICENSE e604c8b1e04db9b4ff3e8d4db82d38a5
 CHANGELOG a15abbe5ab0b516ec0c2e0f145fd7663
 ChatServ.sln 57f9c1bf9f05fdd392fb590769a34e07
+LICENSE e604c8b1e04db9b4ff3e8d4db82d38a5
 README e768eb84ad6302769486f29f5cb16427
-client/chat_icon.ico 237e720408a0221dbb5f548b2d367c2e
-client/chat.designer.vb 5862576fb2de7ca74150d18f29facc46
-client/AboutBox1.vb 102578b2867fb3ddfd18071ad429b765
-client/chat.vb d3bbfcec943456fb08de536979a80375
-client/Server Manager.vb be3c23bbab7cb359d383915ca77799d9
-client/chat.resx 934d1104919f1b09b4e75f7362eeeed7
-client/app.config 24ab77a9dbb13e85ad293a76c7f4b8e5
-client/client.vbproj 55c933a2ce86049dcc1a9ec2cc3fcce1
-client/AboutBox1.resx e294d952e8dac12c2184c689e5dc8bd4
+bin/ChatServ Server GUI.exe 04e2950638cba6c2e39c70e067e1c58d
+bin/ChatServ.zip 94cb607513af7277491c59707915d6f2
+bin/Client.exe fbd1f60fdf3f36f401335047c2b8b86c
+bin/Client.exe.config 24ab77a9dbb13e85ad293a76c7f4b8e5
+bin/Server.exe 0b89c66fc598a6e13ff0894c4ecfcd1c
+bin/Server.exe.config 79ab1f86c95380f225b38b3156d88c8b
+bin/config.ini 8c8e07559c90261fcb48697801a5d78c
+bin/scripts.dll c3cef926b794655088d3b798c272bfd7
+bin/server_22.03.2012.log 88b116c348d74b53b2f75b569ee12cd9
+bin/server_23.03.2012.log 88ce40d3c72ca35b8716b73171b5d9b3
 client/AboutBox1.Designer.vb 6adda18517cd83bcfd3020adc96922ed
+client/AboutBox1.resx e294d952e8dac12c2184c689e5dc8bd4
+client/AboutBox1.vb 102578b2867fb3ddfd18071ad429b765
 client/Server Manager.Designer.vb 7a924184944e440572bf02f5903efa8d
 client/Server Manager.resx 090e9c9f422f5bf7300880b51128c5ba
-client/My Project/AssemblyInfo.vb a2a79d8d974abdab8c6aaf488cda4ca6
+client/Server Manager.vb be3c23bbab7cb359d383915ca77799d9
+client/app.config 24ab77a9dbb13e85ad293a76c7f4b8e5
+client/chat.designer.vb 5862576fb2de7ca74150d18f29facc46
+client/chat.resx 934d1104919f1b09b4e75f7362eeeed7
+client/chat.vb d3bbfcec943456fb08de536979a80375
+client/chat_icon.ico 237e720408a0221dbb5f548b2d367c2e
+client/client.vbproj 55c933a2ce86049dcc1a9ec2cc3fcce1
+client/My Project/Application.Designer.vb a47e2289d3359b1cd0b979e3869b0a89
 client/My Project/Application.myapp 2965ccb4719a752dbf7cec6f455e51d7
+client/My Project/AssemblyInfo.vb a2a79d8d974abdab8c6aaf488cda4ca6
 client/My Project/Resources.Designer.vb c636188340f8ea77ce10f1e94110e155
 client/My Project/Resources.resx 3b2c5d2ba914302e44849c77a1216dd2
+client/My Project/Settings.Designer.vb 19f38c86d10b630212a0175f39985c5a
 client/My Project/Settings.settings 2c703f7b9a9de2f9c5e223b29c5bdde7
 client/My Project/app.manifest 1341519bc77a6c8c062716031e1e7e22
-client/My Project/Application.Designer.vb a47e2289d3359b1cd0b979e3869b0a89
-client/My Project/Settings.Designer.vb 19f38c86d10b630212a0175f39985c5a
 client/Resources/chatserv-logo.png 2713461d3d64e5c0448904ba09d59703
-client/obj/Release/GenerateResource.write.1.tlog e9721fb85a5df099ef615a8bc09556bb
-client/obj/Release/Client.chat.resources 149eda8142199268683de99d90080219
-client/obj/Release/Client.Server_Manager.resources e781a63b06d83ea23e8406f7212be304
-client/obj/Release/Client.Resources.resources ce259f5daedef4f5f84e722f16cabb4d
-client/obj/Release/GenerateResource.read.1.tlog 3ac994daabf45939886dc2114a9a836b
-client/obj/Release/client.vbproj.FileListAbsolute.txt 1e7a26fb75c3796021bfde6c1e7d4668
-client/obj/Release/DesignTimeResolveAssemblyReferencesInput.cache c6f01dcd9ea410dfee579c82343597b0
 client/obj/Release/Client.AboutBox1.resources 73518a8027fb6ac4b34af8cf8d2649df
+client/obj/Release/Client.Resources.resources ce259f5daedef4f5f84e722f16cabb4d
+client/obj/Release/Client.Server_Manager.resources e781a63b06d83ea23e8406f7212be304
+client/obj/Release/Client.chat.resources 149eda8142199268683de99d90080219
 client/obj/Release/Client.exe fbd1f60fdf3f36f401335047c2b8b86c
+client/obj/Release/DesignTimeResolveAssemblyReferencesInput.cache c6f01dcd9ea410dfee579c82343597b0
+client/obj/Release/GenerateResource.read.1.tlog 3ac994daabf45939886dc2114a9a836b
+client/obj/Release/GenerateResource.write.1.tlog e9721fb85a5df099ef615a8bc09556bb
+client/obj/Release/client.vbproj.FileListAbsolute.txt 1e7a26fb75c3796021bfde6c1e7d4668
 client/obj/Release/TempPE/My Project.Resources.Designer.vb.dll 85e160965548c4c0f8301797ceba72f0
-server/chat_icon.ico 237e720408a0221dbb5f548b2d367c2e
-server/server.vbproj e674141e6fc52693d8f226c71e6df7f4
-server/config.ini 15ba8626ac17545d446e1ba6d204a768
-server/app.config 79ab1f86c95380f225b38b3156d88c8b
-server/server.vb c08972ff29a3019ea01cd899fbbc66a1
-server/My Project/AssemblyInfo.vb 0af63fd9a28e8eae7de6ab31b1f2244c
-server/My Project/Application.myapp f4454f8d12d17bb219516f147e0b3aa9
-server/My Project/Resources.Designer.vb b087f74aef361a57898d99db95a32a35
-server/My Project/Resources.resx c07716633f086d91759ae32a18996a1a
-server/My Project/Settings.settings 0915ff283653f2db02461610ded08861
-server/My Project/Application.Designer.vb 7a8ef36f6a13b917177cbcc09cc4dcd3
-server/My Project/Settings.Designer.vb 86a3eeae1fbdec81d1c28934b0d4f635
-server/obj/Release/GenerateResource.write.1.tlog 0e4df05c7c498c15b8101465a8518f32
-server/obj/Release/server.vbproj.FileListAbsolute.txt 17cf0d3cff83e087313b7463790b41ba
-server/obj/Release/GenerateResource.read.1.tlog 1f230fffafdbc7aa255adc866dae69f7
-server/obj/Release/Server.exe 0b89c66fc598a6e13ff0894c4ecfcd1c
-server/obj/Release/ChatServ_Server.Resources.resources cd7dbc7abeda9893ce25793744443958
-server/obj/Release/DesignTimeResolveAssemblyReferencesInput.cache a0ac35a7dc9fd19b28ddbc3f7849b94c
-server/obj/Release/ResolveAssemblyReference.cache 627347bd01901bdb81cfd6cf03aa276e
-bin/Server.exe.config 79ab1f86c95380f225b38b3156d88c8b
-bin/scripts.dll c3cef926b794655088d3b798c272bfd7
-bin/server_23.03.2012.log 88ce40d3c72ca35b8716b73171b5d9b3
-bin/ChatServ.zip 94cb607513af7277491c59707915d6f2
-bin/Client.exe.config 24ab77a9dbb13e85ad293a76c7f4b8e5
-bin/ChatServ Server GUI.exe 04e2950638cba6c2e39c70e067e1c58d
-bin/Server.exe 0b89c66fc598a6e13ff0894c4ecfcd1c
-bin/config.ini 8c8e07559c90261fcb48697801a5d78c
-bin/server_22.03.2012.log 88b116c348d74b53b2f75b569ee12cd9
-bin/Client.exe fbd1f60fdf3f36f401335047c2b8b86c
-scripts/log.vb 9ba58b3fa14ef1d0fe9adfc02c6f69ec
 scripts/conf.vb ae5cfba0213b329bf91f8ba886896df3
+scripts/log.vb 9ba58b3fa14ef1d0fe9adfc02c6f69ec
 scripts/scripts.vbproj 9f6998e6c835e21f6989b56dd048d4a9
-scripts/My Project/AssemblyInfo.vb 6ccb39e2bde4021193cc1b05a1a6f3af
+scripts/My Project/Application.Designer.vb 7a8ef36f6a13b917177cbcc09cc4dcd3
 scripts/My Project/Application.myapp dcf8a316c9be1143fda5e627db3087cd
+scripts/My Project/AssemblyInfo.vb 6ccb39e2bde4021193cc1b05a1a6f3af
 scripts/My Project/Resources.Designer.vb 24655869d631c692541337c914ffeab4
 scripts/My Project/Resources.resx c07716633f086d91759ae32a18996a1a
-scripts/My Project/Settings.settings 0915ff283653f2db02461610ded08861
-scripts/My Project/Application.Designer.vb 7a8ef36f6a13b917177cbcc09cc4dcd3
 scripts/My Project/Settings.Designer.vb 6cf2e972408a55ca706e86192c169279
-scripts/obj/Release/GenerateResource.write.1.tlog 2cb20971d796d985b9f9f73df4b615d5
-scripts/obj/Release/scripts.dll c3cef926b794655088d3b798c272bfd7
-scripts/obj/Release/scripts.Resources.resources cd7dbc7abeda9893ce25793744443958
-scripts/obj/Release/GenerateResource.read.1.tlog 0e32891ffac3f177c319e0844055113a
-scripts/obj/Release/scripts.vbproj.FileListAbsolute.txt da83baaebeb37a5277ae17840d2b4b29
+scripts/My Project/Settings.settings 0915ff283653f2db02461610ded08861
 scripts/obj/Release/DesignTimeResolveAssemblyReferencesInput.cache 7ea0a0bfc0169979551d60c4e54feacf
+scripts/obj/Release/GenerateResource.read.1.tlog 0e32891ffac3f177c319e0844055113a
+scripts/obj/Release/GenerateResource.write.1.tlog 2cb20971d796d985b9f9f73df4b615d5
+scripts/obj/Release/scripts.Resources.resources cd7dbc7abeda9893ce25793744443958
+scripts/obj/Release/scripts.dll c3cef926b794655088d3b798c272bfd7
+scripts/obj/Release/scripts.vbproj.FileListAbsolute.txt da83baaebeb37a5277ae17840d2b4b29
+server/app.config 79ab1f86c95380f225b38b3156d88c8b
+server/chat_icon.ico 237e720408a0221dbb5f548b2d367c2e
+server/config.ini 15ba8626ac17545d446e1ba6d204a768
+server/server.vb c08972ff29a3019ea01cd899fbbc66a1
+server/server.vbproj e674141e6fc52693d8f226c71e6df7f4
+server/My Project/Application.Designer.vb 7a8ef36f6a13b917177cbcc09cc4dcd3
+server/My Project/Application.myapp f4454f8d12d17bb219516f147e0b3aa9
+server/My Project/AssemblyInfo.vb 0af63fd9a28e8eae7de6ab31b1f2244c
+server/My Project/Resources.Designer.vb b087f74aef361a57898d99db95a32a35
+server/My Project/Resources.resx c07716633f086d91759ae32a18996a1a
+server/My Project/Settings.Designer.vb 86a3eeae1fbdec81d1c28934b0d4f635
+server/My Project/Settings.settings 0915ff283653f2db02461610ded08861
+server/obj/Release/ChatServ_Server.Resources.resources cd7dbc7abeda9893ce25793744443958
+server/obj/Release/DesignTimeResolveAssemblyReferencesInput.cache a0ac35a7dc9fd19b28ddbc3f7849b94c
+server/obj/Release/GenerateResource.read.1.tlog 1f230fffafdbc7aa255adc866dae69f7
+server/obj/Release/GenerateResource.write.1.tlog 0e4df05c7c498c15b8101465a8518f32
+server/obj/Release/ResolveAssemblyReference.cache 627347bd01901bdb81cfd6cf03aa276e
+server/obj/Release/Server.exe 0b89c66fc598a6e13ff0894c4ecfcd1c
+server/obj/Release/server.vbproj.FileListAbsolute.txt 17cf0d3cff83e087313b7463790b41ba
