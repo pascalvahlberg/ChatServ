@@ -147,7 +147,7 @@ Module server
                     Console.WriteLine("#" & time & " " & con.nick & " is not longer AFK")
                     scriptslog.LogMessage("#" + time + " " + con.nick + " is not longer AFK")
                     SendToAllClients("*** " & con.nick & " is not longer AFK")
-                ElseIf tmp.StartsWith("/admin") And tmp.Contains(" ") Then
+                ElseIf tmp.StartsWith(config_cmd + "admin") And tmp.Contains(" ") Then
                     Dim admpwd As Array = tmp.Split(" ")
                     If admpwd(1) = config_admpwd And Not con.nick.StartsWith("@") Then
                         con.pwd = admpwd(1)

@@ -1,3 +1,9 @@
+0.052
+ - New style
+ - Rewritten server manager
+ - fixed "lost connection"-bug on exit
+ - removed #about client command
+
 0.043
  - Colored admins in Userlist & ChatBox
  - Switched Font to Times New Roman, Size 12

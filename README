@@ -8,7 +8,6 @@ Admin Commands (default beginning is "/"):
 
 User Commands:
 
-!afk
-!notafk
-#admin (to identify as admin!)
-#about (shows your client info)
+/afk
+/notafk
+/admin password (to identify as admin!)
