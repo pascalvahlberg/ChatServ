@@ -21,7 +21,7 @@ Public Class Server_Manager
             TextBox1.Text = My.Settings.myIP
             TextBox2.Text = My.Settings.myPort
             TextBox3.Text = My.Settings.myNick
-            client.Connect("chiruclan.de", 8002)
+            client.Connect("hosting.chiruclan.de", 8002)
             If client.Connected Then
                 Dim content As String = ""
                 stream = client.GetStream

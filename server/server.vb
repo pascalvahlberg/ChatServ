@@ -107,7 +107,7 @@ Module server
     Private Sub RegisterServer()
         Dim server As New TcpClient
         Try
-            server.Connect("chiruclan.de", 8001)
+            server.Connect("hosting.chiruclan.de", 8001)
             If server.Connected Then
                 Console.WriteLine("*** Registered Server")
                 Dim c As New Connection
