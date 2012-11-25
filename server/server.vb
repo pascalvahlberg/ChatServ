@@ -114,7 +114,7 @@ Module server
                 c.stream = server.GetStream
                 c.streamr = New StreamReader(c.stream)
                 c.streamw = New StreamWriter(c.stream)
-                c.streamw.WriteLine(config_name & " " & config_port)
+                c.streamw.WriteLine("/REGISTER " & config_name & " " & config_port)
                 c.streamw.Flush()
                 While server.Connected
 

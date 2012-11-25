@@ -7,6 +7,7 @@ Public Class Server_Manager
     Private client As New TcpClient
     Private stream As NetworkStream
     Private streamr As StreamReader
+	Private streamw As StreamWriter
     Private list As New List(Of Avail)
 
     Private Structure Avail
@@ -21,11 +22,15 @@ Public Class Server_Manager
             TextBox1.Text = My.Settings.myIP
             TextBox2.Text = My.Settings.myPort
             TextBox3.Text = My.Settings.myNick
-            client.Connect("hosting.chiruclan.de", 8002)
+            client.Connect("hosting.chiruclan.de", 8001)
             If client.Connected Then
                 Dim content As String = ""
                 stream = client.GetStream
                 streamr = New StreamReader(stream)
+                streamw = New StreamWriter(stream)
+				streamw.WriteLine("/LIST")
+				streamw.Flush()
+				streamw.Close()
                 While client.Connected
                     content = streamr.ReadLine()
                     If Not String.IsNullOrWhiteSpace(content) Then
@@ -36,11 +41,14 @@ Public Class Server_Manager
                         Else
                             Dim c As New Avail
                             Dim cs As Array = content.Split(";")
-                            c.name = cs(0)
-                            c.ip = cs(1)
-                            c.port = cs(2)
-                            ListBox1.Items.Add(c.name)
-                            list.Add(c)
+							c.opcode = cs(0)
+                            c.name = cs(1)
+                            c.ip = cs(2)
+                            c.port = cs(3)
+							if cs(0) = "0x0" Then
+								ListBox1.Items.Add(c.name)
+								list.Add(c)
+							End If
                         End If
                     Else
                         client.Close()
