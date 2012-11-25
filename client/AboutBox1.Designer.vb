@@ -80,9 +80,9 @@ Partial Class AboutBox1
         Me.LabelProductName.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LabelProductName.Location = New System.Drawing.Point(354, 0)
         Me.LabelProductName.Margin = New System.Windows.Forms.Padding(6, 0, 3, 0)
-        Me.LabelProductName.MaximumSize = New System.Drawing.Size(0, 17)
+        Me.LabelProductName.MaximumSize = New System.Drawing.Size(2, 17)
         Me.LabelProductName.Name = "LabelProductName"
-        Me.LabelProductName.Size = New System.Drawing.Size(245, 17)
+        Me.LabelProductName.Size = New System.Drawing.Size(2, 17)
         Me.LabelProductName.TabIndex = 0
         Me.LabelProductName.Text = "Produktname"
         Me.LabelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -94,9 +94,9 @@ Partial Class AboutBox1
         Me.LabelVersion.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LabelVersion.Location = New System.Drawing.Point(354, 24)
         Me.LabelVersion.Margin = New System.Windows.Forms.Padding(6, 0, 3, 0)
-        Me.LabelVersion.MaximumSize = New System.Drawing.Size(0, 17)
+        Me.LabelVersion.MaximumSize = New System.Drawing.Size(2, 17)
         Me.LabelVersion.Name = "LabelVersion"
-        Me.LabelVersion.Size = New System.Drawing.Size(245, 17)
+        Me.LabelVersion.Size = New System.Drawing.Size(2, 17)
         Me.LabelVersion.TabIndex = 0
         Me.LabelVersion.Text = "Version"
         Me.LabelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -108,9 +108,9 @@ Partial Class AboutBox1
         Me.LabelCopyright.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LabelCopyright.Location = New System.Drawing.Point(354, 48)
         Me.LabelCopyright.Margin = New System.Windows.Forms.Padding(6, 0, 3, 0)
-        Me.LabelCopyright.MaximumSize = New System.Drawing.Size(0, 17)
+        Me.LabelCopyright.MaximumSize = New System.Drawing.Size(2, 17)
         Me.LabelCopyright.Name = "LabelCopyright"
-        Me.LabelCopyright.Size = New System.Drawing.Size(245, 17)
+        Me.LabelCopyright.Size = New System.Drawing.Size(2, 17)
         Me.LabelCopyright.TabIndex = 0
         Me.LabelCopyright.Text = "Copyright"
         Me.LabelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -122,9 +122,9 @@ Partial Class AboutBox1
         Me.LabelCompanyName.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LabelCompanyName.Location = New System.Drawing.Point(354, 72)
         Me.LabelCompanyName.Margin = New System.Windows.Forms.Padding(6, 0, 3, 0)
-        Me.LabelCompanyName.MaximumSize = New System.Drawing.Size(0, 17)
+        Me.LabelCompanyName.MaximumSize = New System.Drawing.Size(2, 17)
         Me.LabelCompanyName.Name = "LabelCompanyName"
-        Me.LabelCompanyName.Size = New System.Drawing.Size(245, 17)
+        Me.LabelCompanyName.Size = New System.Drawing.Size(2, 17)
         Me.LabelCompanyName.TabIndex = 0
         Me.LabelCompanyName.Text = "Firmenname"
         Me.LabelCompanyName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft

@@ -126,7 +126,7 @@ Module server
                             Exit For
                         End If
                     Next
-                ElseIf tmp.StartsWith(config_cmd & "shutdown") And config_admpwd = con.pwd Then
+                ElseIf tmp.StartsWith(config_cmd & "shutdown") And Not tmp.Contains(" ") And config_admpwd = con.pwd Then
                     Console.ForegroundColor = ConsoleColor.Yellow
                     scriptslog.LogMessage("*** Server shutdown by " + con.nick + " ****")
                     SendToAllClients("*** SERVER SHUTDOWN BY " & con.nick.ToUpper.Remove(0, 1) & " ***")
@@ -144,23 +144,25 @@ Module server
                     SendToAllClients("*** " & con.nick & " is AFK right now")
                 ElseIf tmp.StartsWith(config_cmd + "notafk") Then
                     Console.ForegroundColor = ConsoleColor.Yellow
-                    Console.WriteLine("#" & time & " " & con.nick & " is not longer AFK")
-                    scriptslog.LogMessage("#" + time + " " + con.nick + " is not longer AFK")
-                    SendToAllClients("*** " & con.nick & " is not longer AFK")
-                ElseIf tmp.StartsWith(config_cmd + "admin") And tmp.Contains(" ") Then
-                    Dim admpwd As Array = tmp.Split(" ")
-                    If admpwd(1) = config_admpwd And Not con.nick.StartsWith("@") Then
-                        con.pwd = admpwd(1)
-                        Console.ForegroundColor = ConsoleColor.Yellow
-                        Console.WriteLine("#" & time & " *** " & con.nick & " is now an administrator")
-                        scriptslog.LogMessage("*** " + time + " *** " & con.nick & " is now an administrator")
-                        SendToAllClients("*** " & con.nick & " is now an administrator")
-                        users.Remove(con.nick)
-                        con.nick = "@" & con.nick
-                        users.Add(con.nick)
-                        Console.WriteLine(time & " " & OnlineList())
-                        scriptslog.LogMessage("*** " & time & " " & OnlineList())
-                        SendToAllClients(OnlineList())
+                    Console.WriteLine("#" & time & " " & con.nick & " is no longer AFK")
+                    scriptslog.LogMessage("#" + time + " " + con.nick + " is no longer AFK")
+                    SendToAllClients("*** " & con.nick & " is no longer AFK")
+                ElseIf tmp.StartsWith(config_cmd + "admin") Then
+                    If tmp.StartsWith(" ") Then
+                        Dim admpwd As Array = tmp.Split(" ")
+                        If admpwd(1) = config_admpwd And Not con.nick.StartsWith("@") Then
+                            con.pwd = admpwd(1)
+                            Console.ForegroundColor = ConsoleColor.Yellow
+                            Console.WriteLine("#" & time & " *** " & con.nick & " is an administrator now")
+                            scriptslog.LogMessage("*** " + time + " *** " & con.nick & " is an administrator now")
+                            SendToAllClients("*** " & con.nick & " is an administrator now")
+                            users.Remove(con.nick)
+                            con.nick = "@" & con.nick
+                            users.Add(con.nick)
+                            Console.WriteLine(time & " " & OnlineList())
+                            scriptslog.LogMessage("*** " & time & " " & OnlineList())
+                            SendToAllClients(OnlineList())
+                        End If
                     End If
                 ElseIf tmp.Contains(config_admpwd) Then
                     list.Remove(con)
