@@ -4,10 +4,6 @@ Imports System.IO
 
 Public Class Server_Manager
 
-    Private client As New TcpClient
-    Private stream As NetworkStream
-    Private streamr As StreamReader
-	Private streamw As StreamWriter
     Private list As New List(Of Avail)
 
     Private Structure Avail
@@ -22,46 +18,8 @@ Public Class Server_Manager
             TextBox1.Text = My.Settings.myIP
             TextBox2.Text = My.Settings.myPort
             TextBox3.Text = My.Settings.myNick
-            client.Connect("hosting.chiruclan.de", 8001)
-            If client.Connected Then
-                Dim content As String = ""
-                stream = client.GetStream
-                streamr = New StreamReader(stream)
-                streamw = New StreamWriter(stream)
-				streamw.WriteLine("/LIST")
-				streamw.Flush()
-				streamw.Close()
-                While client.Connected
-                    content = streamr.ReadLine()
-                    If Not String.IsNullOrWhiteSpace(content) Then
-                        If content = "/QUIT" Then
-                            client.Close()
-                            stream.Close()
-                            streamr.Close()
-                        Else
-                            Dim c As New Avail
-                            Dim cs As Array = content.Split(";")
-							c.opcode = cs(0)
-                            c.name = cs(1)
-                            c.ip = cs(2)
-                            c.port = cs(3)
-							if cs(0) = "0x0" Then
-								ListBox1.Items.Add(c.name)
-								list.Add(c)
-							End If
-                        End If
-                    Else
-                        client.Close()
-                        stream.Close()
-                        streamr.Close()
-                    End If
-                End While
-                client.Close()
-                stream.Close()
-                streamr.Close()
-            End If
         Catch ex As Exception
-            MsgBox("Could not receive server list, you have to enter it yourself!")
+            MsgBox("Ooops! An unexpected error happened!")
         End Try
     End Sub
 
@@ -102,6 +60,7 @@ Public Class Server_Manager
     End Sub
 
     Private Sub Server_Manager_Shown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Shown
+        chat.Close()
         TextBox1.Focus()
     End Sub
 

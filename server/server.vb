@@ -63,8 +63,6 @@ Module server
         Console.WriteLine("# Powered by Chiruclan")
         Console.WriteLine("# Commandstring is " + config_cmd)
         Console.WriteLine("# Loaded at " & time)
-        Dim reg As New Threading.Thread(AddressOf RegisterServer)
-        reg.Start()
         server = New TcpListener(ipendpoint)
         server.Start()
         Console.WriteLine("# Listening on " & config_ip & ":" & config_port)
@@ -102,35 +100,6 @@ Module server
                 t.Start(c)
             End If
         End While
-    End Sub
-
-    Private Sub RegisterServer()
-        Dim server As New TcpClient
-        Try
-            server.Connect("hosting.chiruclan.de", 8001)
-            If server.Connected Then
-                Console.WriteLine("*** Registered Server")
-                Dim c As New Connection
-                c.stream = server.GetStream
-                c.streamr = New StreamReader(c.stream)
-                c.streamw = New StreamWriter(c.stream)
-                c.streamw.WriteLine("/REGISTER " & config_name & " " & config_port)
-                c.streamw.Flush()
-                While server.Connected
-
-                End While
-                c.stream.Close()
-                c.streamw.Close()
-                c.streamr.Close()
-                Console.WriteLine("*** Unregistered Server")
-                RegisterServer()
-            Else
-                server.Close()
-                RegisterServer()
-            End If
-        Catch ex As Exception
-            RegisterServer()
-        End Try
     End Sub
 
     Private Sub ListenToConnection(ByVal con As Connection)

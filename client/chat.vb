@@ -155,14 +155,13 @@ Public Class chat
             Try
                 Me.Invoke(New DAddItem(AddressOf AddItem), streamr.ReadLine)
             Catch ex As Exception
-                If client.Connected Then
-                    client.Close()
-                    stream.Close()
-                    streamw.Close()
-                    streamr.Close()
-                    MsgBox("Connection lost")
-                    Application.Exit()
-                End If
+                client.Close()
+                stream.Close()
+                streamw.Close()
+                streamr.Close()
+                MsgBox("Connection lost")
+                Server_Manager.Show()
+                Server_Manager.Focus()
             End Try
         End While
     End Sub
