@@ -126,15 +126,29 @@ Public Class chat
                     .SelectionColor = .ForeColor
                     .SelectionFont = .Font
                 End With
+            ElseIf nick = "0x0" Then
+                With RichTextBox1
+                    .Select(.TextLength, 0)
+                    .SelectionFont = New Font(.Font, FontStyle.Bold)
+                    .SelectionColor = Color.DarkRed
+                    If String.IsNullOrWhiteSpace(.Text) Then
+                        .AppendText("*** UNKNOWN COMMAND: ")
+                    Else
+                        .AppendText(vbNewLine & "*** UNKNOWN COMMAND: ")
+                    End If
+                    .SelectionColor = .ForeColor
+                    .SelectionFont = .Font
+                    .AppendText(s.Remove(0, 3))
+                End With
             Else
                 With RichTextBox1
                     .Select(.TextLength, 0)
                     .SelectionFont = New Font(.Font, FontStyle.Bold)
                     .SelectionColor = Color.DarkViolet
                     If String.IsNullOrWhiteSpace(.Text) Then
-                        .AppendText("unknown string received: ")
+                        .AppendText("received unknown string: ")
                     Else
-                        .AppendText(vbNewLine & "unknown string received: ")
+                        .AppendText(vbNewLine & "received unknown string: ")
                     End If
                     .SelectionColor = .ForeColor
                     .SelectionFont = .Font
@@ -187,14 +201,12 @@ Public Class chat
     Private Sub Form1_leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.FormClosed
         Try
             If client.Connected Then
-                If MsgBox("Do you really want to exit?", vbYesNo) = vbYes Then
-                    appclose = True
-                    streamw.Close()
-                    streamr.Close()
-                    stream.Close()
-                    client.Close()
-                    Application.Exit()
-                End If
+                appclose = True
+                streamw.Close()
+                streamr.Close()
+                stream.Close()
+                client.Close()
+                Application.Exit()
             End If
         Catch ex As Exception
         End Try

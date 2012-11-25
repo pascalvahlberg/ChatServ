@@ -27,7 +27,6 @@ Module server
         Dim streamr As StreamReader
         Dim nick As String
         Dim pwd As String
-        Dim announce As String
     End Structure
 
     Private Sub SendToAllClients(ByVal s As String)
@@ -105,50 +104,50 @@ Module server
     Private Sub ListenToConnection(ByVal con As Connection)
         Do
             Try
-                Dim announce As String = con.announce
                 Dim tmp As String = con.streamr.ReadLine
-                If tmp.StartsWith(config_cmd & "kill ") And config_admpwd = con.pwd Then
-                    Console.ForegroundColor = ConsoleColor.Yellow
-                    Dim Kickname As String = tmp.Remove(0, 6)
-                    For Each Connection In list
-                        If Connection.nick = Kickname Then
-                            list.Remove(Connection)
-                            users.Remove(Connection.nick)
-                            Connection.stream.Close()
-                            Connection.streamr.Close()
-                            Connection.streamw.Close()
-                            Console.WriteLine(time & " " & OnlineList())
-                            scriptslog.LogMessage("*** " & time & " " & OnlineList())
-                            SendToAllClients(OnlineList())
-                            SendToAllClients("*** " & Kickname & " is killed")
-                            Console.WriteLine("*" & time & " " & Kickname & " is killed!")
-                            scriptslog.LogMessage("*" & time & " " & Kickname & " is killed!")
-                            Exit For
-                        End If
-                    Next
-                ElseIf tmp.StartsWith(config_cmd & "shutdown") And Not tmp.Contains(" ") And config_admpwd = con.pwd Then
-                    Console.ForegroundColor = ConsoleColor.Yellow
-                    scriptslog.LogMessage("*** Server shutdown by " + con.nick + " ****")
-                    SendToAllClients("*** SERVER SHUTDOWN BY " & con.nick.ToUpper.Remove(0, 1) & " ***")
-                    SendToAllClients("/SHUTDOWN")
-                    End
-                ElseIf tmp.StartsWith(config_cmd + "announce ") And config_admpwd = con.pwd Then
-                    Console.ForegroundColor = ConsoleColor.Cyan
-                    Console.WriteLine("!" & time & " <Announce by " & con.nick & "> " & tmp.Remove(0, 9))
-                    scriptslog.LogMessage("!" & time & " <Announce by " & con.nick & "> " & tmp.Remove(0, 9))
-                    SendToAllClients("<Announce by " + con.nick + "> " & tmp.Remove(0, 9))
-                ElseIf tmp.StartsWith(config_cmd + "afk") Then
-                    Console.ForegroundColor = ConsoleColor.Yellow
-                    Console.WriteLine("#" & time & " " & con.nick & " is AFK right now")
-                    scriptslog.LogMessage("#" + time + " " + con.nick + " is AFK right now")
-                    SendToAllClients("*** " & con.nick & " is AFK right now")
-                ElseIf tmp.StartsWith(config_cmd + "notafk") Then
-                    Console.ForegroundColor = ConsoleColor.Yellow
-                    Console.WriteLine("#" & time & " " & con.nick & " is no longer AFK")
-                    scriptslog.LogMessage("#" + time + " " + con.nick + " is no longer AFK")
-                    SendToAllClients("*** " & con.nick & " is no longer AFK")
-                ElseIf tmp.StartsWith(config_cmd + "admin") Then
-                    If tmp.StartsWith(" ") Then
+                If tmp.StartsWith(config_cmd) Then
+                    Dim cmd As String = tmp.Remove(0, 1)
+                    If cmd.StartsWith("kill ") And config_admpwd = con.pwd Then
+                        Console.ForegroundColor = ConsoleColor.Yellow
+                        Dim Kickname As String = tmp.Remove(0, 6)
+                        For Each Connection In list
+                            If Connection.nick = Kickname Then
+                                list.Remove(Connection)
+                                users.Remove(Connection.nick)
+                                Connection.stream.Close()
+                                Connection.streamr.Close()
+                                Connection.streamw.Close()
+                                Console.WriteLine(time & " " & OnlineList())
+                                scriptslog.LogMessage("*** " & time & " " & OnlineList())
+                                SendToAllClients(OnlineList())
+                                SendToAllClients("*** " & Kickname & " is killed")
+                                Console.WriteLine("*" & time & " " & Kickname & " is killed!")
+                                scriptslog.LogMessage("*" & time & " " & Kickname & " is killed!")
+                                Exit For
+                            End If
+                        Next
+                    ElseIf cmd = "shutdown" And config_admpwd = con.pwd Then
+                        Console.ForegroundColor = ConsoleColor.Yellow
+                        scriptslog.LogMessage("*** Server shutdown by " + con.nick + " ****")
+                        SendToAllClients("*** SERVER SHUTDOWN BY " & con.nick.ToUpper.Remove(0, 1) & " ***")
+                        SendToAllClients("/SHUTDOWN")
+                        End
+                    ElseIf cmd.StartsWith("announce ") And config_admpwd = con.pwd Then
+                        Console.ForegroundColor = ConsoleColor.Cyan
+                        Console.WriteLine("!" & time & " <Announce by " & con.nick & "> " & tmp.Remove(0, 9))
+                        scriptslog.LogMessage("!" & time & " <Announce by " & con.nick & "> " & tmp.Remove(0, 9))
+                        SendToAllClients("<Announce by " + con.nick + "> " & tmp.Remove(0, 9))
+                    ElseIf cmd = "afk" Then
+                        Console.ForegroundColor = ConsoleColor.Yellow
+                        Console.WriteLine("#" & time & " " & con.nick & " is AFK right now")
+                        scriptslog.LogMessage("#" + time + " " + con.nick + " is AFK right now")
+                        SendToAllClients("*** " & con.nick & " is AFK right now")
+                    ElseIf cmd = "notafk" Then
+                        Console.ForegroundColor = ConsoleColor.Yellow
+                        Console.WriteLine("#" & time & " " & con.nick & " is no longer AFK")
+                        scriptslog.LogMessage("#" + time + " " + con.nick + " is no longer AFK")
+                        SendToAllClients("*** " & con.nick & " is no longer AFK")
+                    ElseIf cmd.StartsWith("admin ") Then
                         Dim admpwd As Array = tmp.Split(" ")
                         If admpwd(1) = config_admpwd And Not con.nick.StartsWith("@") Then
                             con.pwd = admpwd(1)
@@ -163,29 +162,22 @@ Module server
                             scriptslog.LogMessage("*** " & time & " " & OnlineList())
                             SendToAllClients(OnlineList())
                         End If
+                    ElseIf cmd.StartsWith("names") Then
+                        Sendtoperson(OnlineList(), con.nick)
+                        Console.WriteLine(time & " " & OnlineList())
+                        scriptslog.LogMessage("*** " & time & " " & OnlineList())
+                    Else
+                        Sendtoperson("0x0 " & cmd.Split(" ")(0).ToUpper, con.nick)
+                        Console.WriteLine(time & " UNKNOWN COMMAND: " & cmd.Split(" ")(0).ToUpper)
+                        scriptslog.LogMessage("*** " & time & " UNKNOWN COMMAND: " & cmd.Split(" ")(0).ToUpper)
                     End If
-                ElseIf tmp.Contains(config_admpwd) Then
-                    list.Remove(con)
-                    users.Remove(con.nick)
-                    con.stream.Close()
-                    con.streamr.Close()
-                    con.streamw.Close()
-                    Console.WriteLine(time & " " & OnlineList())
-                    scriptslog.LogMessage("*** " & time & " " & OnlineList())
-                    SendToAllClients(OnlineList())
-                    Console.ForegroundColor = ConsoleColor.Yellow
-                    SendToAllClients("*** " & con.nick & " is killed by Server")
-                    Console.WriteLine("*" & time & " " & con.nick & " was killed by Server!")
-                    scriptslog.LogMessage("*" & time & " " & con.nick & " was killed by Server!")
-                ElseIf tmp.StartsWith(config_cmd + "names") Then
-                    Sendtoperson(OnlineList(), con.nick)
-                    Console.WriteLine(time & " " & OnlineList())
-                    scriptslog.LogMessage("*** " & time & " " & OnlineList())
                 Else
-                    Console.ForegroundColor = ConsoleColor.Cyan
-                    Console.WriteLine(time & " <" & con.nick & "> " & tmp)
-                    scriptslog.LogMessage(time & " <" & con.nick & "> " & tmp)
-                    SendToAllClients("<" & con.nick & "> " & tmp)
+                    If Not tmp.Contains(config_admpwd) Then
+                        Console.ForegroundColor = ConsoleColor.Cyan
+                        Console.WriteLine(time & " <" & con.nick & "> " & tmp)
+                        scriptslog.LogMessage(time & " <" & con.nick & "> " & tmp)
+                        SendToAllClients("<" & con.nick & "> " & tmp)
+                    End If
                 End If
             Catch
                 list.Remove(con)
@@ -203,6 +195,9 @@ Module server
     End Sub
 
     Private Sub Sendtoperson(ByVal s As String, ByVal Nick As String)
+        If Nick.StartsWith("@") Then
+            Nick = Nick.Remove(0, 1)
+        End If
         For Each Connection In list
             Try
                 If Connection.nick = Nick Then
