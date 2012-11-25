@@ -46,6 +46,7 @@ Partial Class AboutBox1
         '
         'TableLayoutPanel
         '
+        Me.TableLayoutPanel.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.TableLayoutPanel.ColumnCount = 2
         Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.97342!))
         Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.02658!))
@@ -74,6 +75,8 @@ Partial Class AboutBox1
         '
         'LabelProductName
         '
+        Me.LabelProductName.BackColor = System.Drawing.SystemColors.ButtonShadow
+        Me.LabelProductName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.LabelProductName.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LabelProductName.Location = New System.Drawing.Point(354, 0)
         Me.LabelProductName.Margin = New System.Windows.Forms.Padding(6, 0, 3, 0)
@@ -86,6 +89,8 @@ Partial Class AboutBox1
         '
         'LabelVersion
         '
+        Me.LabelVersion.BackColor = System.Drawing.SystemColors.ButtonShadow
+        Me.LabelVersion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.LabelVersion.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LabelVersion.Location = New System.Drawing.Point(354, 24)
         Me.LabelVersion.Margin = New System.Windows.Forms.Padding(6, 0, 3, 0)
@@ -98,6 +103,8 @@ Partial Class AboutBox1
         '
         'LabelCopyright
         '
+        Me.LabelCopyright.BackColor = System.Drawing.SystemColors.ButtonShadow
+        Me.LabelCopyright.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.LabelCopyright.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LabelCopyright.Location = New System.Drawing.Point(354, 48)
         Me.LabelCopyright.Margin = New System.Windows.Forms.Padding(6, 0, 3, 0)
@@ -110,6 +117,8 @@ Partial Class AboutBox1
         '
         'LabelCompanyName
         '
+        Me.LabelCompanyName.BackColor = System.Drawing.SystemColors.ButtonShadow
+        Me.LabelCompanyName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.LabelCompanyName.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LabelCompanyName.Location = New System.Drawing.Point(354, 72)
         Me.LabelCompanyName.Margin = New System.Windows.Forms.Padding(6, 0, 3, 0)
@@ -123,18 +132,19 @@ Partial Class AboutBox1
         'OKButton
         '
         Me.OKButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.OKButton.BackColor = System.Drawing.Color.Transparent
+        Me.OKButton.BackColor = System.Drawing.SystemColors.ControlDark
         Me.OKButton.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.OKButton.Location = New System.Drawing.Point(524, 222)
+        Me.OKButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.OKButton.Location = New System.Drawing.Point(351, 222)
         Me.OKButton.Name = "OKButton"
-        Me.OKButton.Size = New System.Drawing.Size(75, 22)
+        Me.OKButton.Size = New System.Drawing.Size(248, 22)
         Me.OKButton.TabIndex = 0
         Me.OKButton.Text = "&OK"
         Me.OKButton.UseVisualStyleBackColor = False
         '
         'RichTextBox1
         '
-        Me.RichTextBox1.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.RichTextBox1.BackColor = System.Drawing.SystemColors.ButtonShadow
         Me.RichTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox1.Cursor = System.Windows.Forms.Cursors.Default
         Me.RichTextBox1.Location = New System.Drawing.Point(3, 99)
@@ -143,12 +153,11 @@ Partial Class AboutBox1
         Me.RichTextBox1.Size = New System.Drawing.Size(342, 117)
         Me.RichTextBox1.TabIndex = 2
         Me.RichTextBox1.TabStop = False
-        Me.RichTextBox1.Text = "Available for help on #Mechi at QuakeNet:" & Global.Microsoft.VisualBasic.ChrW(10) & "http://webchat.quakenet.org/?nick=Mechi" & _
-            "_...&channels=Mechi" & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(10) & " or on Chiruclan IRC:" & Global.Microsoft.VisualBasic.ChrW(10) & "http://webchat.chiruclan.de/?nick=Mec" & _
-            "hi_...&channels=help"
+        Me.RichTextBox1.Text = "Available for help on #Mechi at QuakeNet:" & Global.Microsoft.VisualBasic.ChrW(10) & "http://irc.chiruclan.de/"
         '
         'PictureBox1
         '
+        Me.PictureBox1.BackColor = System.Drawing.SystemColors.ButtonShadow
         Me.PictureBox1.BackgroundImage = CType(resources.GetObject("PictureBox1.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox1.Location = New System.Drawing.Point(351, 99)
         Me.PictureBox1.Name = "PictureBox1"
@@ -158,21 +167,24 @@ Partial Class AboutBox1
         '
         'Label1
         '
-        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.SystemColors.ButtonShadow
+        Me.Label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Label1.Location = New System.Drawing.Point(3, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(39, 13)
+        Me.Label1.Size = New System.Drawing.Size(342, 17)
         Me.Label1.TabIndex = 3
         Me.Label1.Text = "Label1"
         '
         'Label2
         '
-        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.SystemColors.ButtonShadow
+        Me.Label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Label2.Location = New System.Drawing.Point(3, 24)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(39, 13)
+        Me.Label2.Size = New System.Drawing.Size(342, 17)
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "Label2"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'AboutBox1
         '
@@ -191,7 +203,6 @@ Partial Class AboutBox1
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "About"
         Me.TableLayoutPanel.ResumeLayout(False)
-        Me.TableLayoutPanel.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

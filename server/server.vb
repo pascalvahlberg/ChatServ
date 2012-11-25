@@ -137,19 +137,20 @@ Module server
                     Console.WriteLine("!" & time & " <Announce by " & con.nick & "> " & tmp.Remove(0, 9))
                     scriptslog.LogMessage("!" & time & " <Announce by " & con.nick & "> " & tmp.Remove(0, 9))
                     SendToAllClients("<Announce by " + con.nick + "> " & tmp.Remove(0, 9))
-                ElseIf tmp.StartsWith("!afk") Then
+                ElseIf tmp.StartsWith(config_cmd + "afk") Then
                     Console.ForegroundColor = ConsoleColor.Yellow
                     Console.WriteLine("#" & time & " " & con.nick & " is AFK right now")
                     scriptslog.LogMessage("#" + time + " " + con.nick + " is AFK right now")
                     SendToAllClients("*** " & con.nick & " is AFK right now")
-                ElseIf tmp.StartsWith("!notafk") Then
+                ElseIf tmp.StartsWith(config_cmd + "notafk") Then
                     Console.ForegroundColor = ConsoleColor.Yellow
                     Console.WriteLine("#" & time & " " & con.nick & " is not longer AFK")
                     scriptslog.LogMessage("#" + time + " " + con.nick + " is not longer AFK")
                     SendToAllClients("*** " & con.nick & " is not longer AFK")
-                ElseIf tmp.StartsWith("#admin") And Not tmp.Contains(" ") Then
-                    con.pwd = con.streamr.ReadLine
-                    If con.pwd = config_admpwd And Not con.nick.StartsWith("@") Then
+                ElseIf tmp.StartsWith("/admin") And tmp.Contains(" ") Then
+                    Dim admpwd As Array = tmp.Split(" ")
+                    If admpwd(1) = config_admpwd And Not con.nick.StartsWith("@") Then
+                        con.pwd = admpwd(1)
                         Console.ForegroundColor = ConsoleColor.Yellow
                         Console.WriteLine("#" & time & " *** " & con.nick & " is now an administrator")
                         scriptslog.LogMessage("*** " + time + " *** " & con.nick & " is now an administrator")
@@ -160,8 +161,6 @@ Module server
                         Console.WriteLine(time & " " & OnlineList())
                         scriptslog.LogMessage("*** " & time & " " & OnlineList())
                         SendToAllClients(OnlineList())
-                    Else
-
                     End If
                 ElseIf tmp.Contains(config_admpwd) Then
                     list.Remove(con)

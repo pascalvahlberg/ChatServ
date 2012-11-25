@@ -168,9 +168,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\banner.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="chat_icon.ico" />
     <None Include="Resources\chatserv-logo.png" />
   </ItemGroup>
@@ -237,6 +234,12 @@
       <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\scripts\scripts.vbproj">
+      <Project>{2DD89C78-FBCA-47C0-9AE0-5FBA8DDA1357}</Project>
+      <Name>scripts</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

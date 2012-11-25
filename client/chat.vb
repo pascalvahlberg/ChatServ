@@ -16,15 +16,16 @@ Public Class chat
     Private ip As String = ""
     Private port As String = ""
     Private pwd As String = ""
+    Private appclose As Boolean = False
 
     Private Sub Form1_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
+        My.Settings.Reload()
+        ip = My.Settings.myIP
+        port = My.Settings.myPort
+        nick = My.Settings.myNick
+        Server_Manager.Close()
+        TextBox1.Focus()
         Try
-            My.Settings.Reload()
-            ip = My.Settings.myIP
-            port = My.Settings.myPort
-            nick = My.Settings.myNick
-            Server_Manager.Close()
-            TextBox1.Focus()
             client.Connect(ip, Integer.Parse(port))
             If client.Connected Then
                 stream = client.GetStream
@@ -36,20 +37,17 @@ Public Class chat
 
                 t.Start()
             Else
-                client.Close()
-                stream.Close()
                 streamw.Close()
                 streamr.Close()
-                MessageBox.Show("Unable to connect to " & ip & ":" & port)
-                Application.Exit()
+                stream.Close()
+                client.Close()
+                MessageBox.Show("Lost connection to: " & ip & ":" & port)
+                Server_Manager.Show()
             End If
         Catch ex As Exception
             client.Close()
-            stream.Close()
-            streamw.Close()
-            streamr.Close()
             MessageBox.Show("Unable to connect to " & ip & ":" & port)
-            Application.Exit()
+            Server_Manager.Show()
         End Try
     End Sub
 
@@ -62,8 +60,6 @@ Public Class chat
                 stream.Close()
                 streamw.Close()
                 streamr.Close()
-                MessageBox.Show("*** SERVER SHUTDOWN ***")
-                Application.Exit()
             End If
         ElseIf s.StartsWith("/names") Then
             Dim i As Integer
@@ -151,19 +147,20 @@ Public Class chat
     End Sub
 
     Private Sub Listen()
-        While client.Connected
-            Try
+        Try
+            While client.Connected
                 Me.Invoke(New DAddItem(AddressOf AddItem), streamr.ReadLine)
-            Catch ex As Exception
-                client.Close()
-                stream.Close()
+            End While
+        Catch ex As Exception
+            If Not appclose Then
                 streamw.Close()
                 streamr.Close()
-                MsgBox("Connection lost")
-                Server_Manager.Show()
-                Server_Manager.Focus()
-            End Try
-        End While
+                stream.Close()
+                client.Close()
+                MsgBox("Lost connection to: " & ip & ":" & port)
+                Application.Exit()
+            End If
+        End Try
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
@@ -173,19 +170,11 @@ Public Class chat
             Else
                 RichTextBox1.AppendText(vbNewLine & "Cannot send an empty String!")
             End If
-        ElseIf TextBox1.Text = "#admin" Then
-            pwd = InputBox("Password: ", "Administrationpassword")
-            streamw.WriteLine(TextBox1.Text)
-            streamw.WriteLine(pwd)
-            streamw.Flush()
-            TextBox1.Clear()
-        ElseIf TextBox1.Text = "#about" Then
-            AboutBox1.Show()
-            TextBox1.Clear()
         Else
             streamw.WriteLine(TextBox1.Text)
             streamw.Flush()
             TextBox1.Clear()
+            TextBox1.Focus()
         End If
     End Sub
 
@@ -196,16 +185,19 @@ Public Class chat
     End Sub
 
     Private Sub Form1_leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.FormClosed
-        If client.Connected Then
-            If MsgBox("Do you really want to exit?", vbYesNo) = vbYes Then
-
-                client.Close()
-                stream.Close()
-                streamw.Close()
-                streamr.Close()
-                Application.Exit()
+        Try
+            If client.Connected Then
+                If MsgBox("Do you really want to exit?", vbYesNo) = vbYes Then
+                    appclose = True
+                    streamw.Close()
+                    streamr.Close()
+                    stream.Close()
+                    client.Close()
+                    Application.Exit()
+                End If
             End If
-        End If
+        Catch ex As Exception
+        End Try
     End Sub
 
     Private Sub ShowToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ShowToolStripMenuItem.Click
@@ -236,16 +228,19 @@ Public Class chat
     End Sub
 
     Private Sub ToolStripButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton1.Click
-        If client.Connected Then
-            If MsgBox("Do you really want to exit?", vbYesNo) = vbYes Then
-
-                client.Close()
-                stream.Close()
-                streamw.Close()
-                streamr.Close()
-                Application.Exit()
+        Try
+            If client.Connected Then
+                If MsgBox("Do you really want to exit?", vbYesNo) = vbYes Then
+                    appclose = True
+                    streamw.Close()
+                    streamr.Close()
+                    stream.Close()
+                    client.Close()
+                    Application.Exit()
+                End If
             End If
-        End If
+        Catch ex As Exception
+        End Try
     End Sub
 
     Private Sub ToolStripButton3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton3.Click
