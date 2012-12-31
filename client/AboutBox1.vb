@@ -1,4 +1,7 @@
-﻿Public NotInheritable Class AboutBox1
+'Copyright by Chiruclan 2009-2013
+'Do not remove this Copyright!
+
+Public NotInheritable Class AboutBox1
 
     Private Sub AboutBox1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' Legen Sie den Titel des Formulars fest.

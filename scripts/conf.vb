@@ -1,4 +1,7 @@
-﻿Public Class conf
+'Copyright by Chiruclan 2009-2013
+'Do not remove this Copyright!
+
+Public Class conf
     Private Declare Ansi Function GetPrivateProfileString Lib "kernel32" Alias "GetPrivateProfileStringA" ( _
     ByVal lpApplicationName As String, _
     ByVal lpKeyName As String, _

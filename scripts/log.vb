@@ -1,4 +1,7 @@
-﻿Public Class log
+'Copyright by Chiruclan 2009-2013
+'Do not remove this Copyright!
+
+Public Class log
     Public Sub LogMessage(ByVal Message As String, Optional ByVal LogFileName As String = "")
         LogFileName = "server_" + Date.Today + ".log"
 

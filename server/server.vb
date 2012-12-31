@@ -1,4 +1,4 @@
-﻿'Copyright by Chiruclan
+'Copyright by Chiruclan 2009-2013
 'Do not remove this Copyright!
 
 Imports System.Net.Sockets

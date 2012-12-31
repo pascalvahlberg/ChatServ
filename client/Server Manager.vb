@@ -1,4 +1,7 @@
-﻿Imports System.Net.Sockets
+'Copyright by Chiruclan 2009-2013
+'Do not remove this Copyright!
+
+Imports System.Net.Sockets
 Imports System.Net
 Imports System.IO
 
